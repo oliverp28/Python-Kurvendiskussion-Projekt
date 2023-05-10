@@ -32,6 +32,14 @@ Als Eingabe dienen folgende Funktionen:
 Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba, David Klumpp
 
 
+Optimierung kurz vor der Abgabe-----------------------
+-> Dopplungen abschaffen und zusammenfassen
+-> pylint Pyhton-Code Analyzer
+—> black (code formator)
+—> pytest (code tester)
+—> isort (Sortiert alle Python Module korrekt)
+
+
 classes:
   -InputFunction
   -LinearFunction
