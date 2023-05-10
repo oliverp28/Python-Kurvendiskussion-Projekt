@@ -13,22 +13,31 @@ Als Eingabe dienen folgende Funktionen:
 --> Die Berechnung der Ergebnisse erfolgt in der jeweiligen Klasse
   
   -> Bestandteile der Ergebnisse:
+     
+      > Ableitungen (Möglichkeit der Anzeige aller, die zur Berechnung verwendet werden)
+      > Nullpunkte mit der X-Achse (Anzahl; Koordinaten)
       > Symmetrie vorhanden? 
           - X-Achse
           - Y-Achse
-      > Nullpunkte mit der X-Achse (Anzahl; Koordinaten)
-      > Hochpunkte (Anzahl; ggfs. Koordinaten)
-      > Tiefpunkte (Anzahl; ggfs. Koordinaten)
-      > Wendepunkte (Anzahl; ggfs. Koordinaten)
+      > Extremstellen  
+          - Hochpunkte (Anzahl; ggfs. Koordinaten)
+          - Tiefpunkte (Anzahl; ggfs. Koordinaten)
+          - Wendepunkte (Anzahl; ggfs. Koordinaten)
       > Krümmungs-Verhalten
       > Monotonie-Verhalten
-      > Grenzverhalten (limes)
-      > Ableitungen (Möglichkeit der Anzeige aller, die zur Berechnung verwendet werden)
-      >
+      > Grenzverhalten (limes) (gegen +/- unendlich)
       
 --> Die Ausgabe erfolgt in einer geordneten übersichtlichen Tabelle
 
 Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba, David Klumpp
+
+
+Optimierung kurz vor der Abgabe-----------------------
+-> Dopplungen abschaffen und zusammenfassen
+-> pylint Pyhton-Code Analyzer
+—> black (code formator)
+—> pytest (code tester)
+—> isort (Sortiert alle Python Module korrekt)
 
 
 classes:
@@ -43,3 +52,6 @@ files:
   -linear_function.py
   -quadratic_function.py
   -curve_discussion_output.py
+
+grober Programmablauf:
+  main -> input_function -> linear_function | quadratic_function -> curve_discussion_output
