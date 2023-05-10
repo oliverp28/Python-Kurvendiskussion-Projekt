@@ -43,3 +43,6 @@ files:
   -linear_function.py
   -quadratic_function.py
   -curve_discussion_output.py
+
+grober Programmablauf:
+  main -> input_function -> linear_function | quadratic_function -> curve_discussion_output
