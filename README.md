@@ -13,18 +13,19 @@ Als Eingabe dienen folgende Funktionen:
 --> Die Berechnung der Ergebnisse erfolgt in der jeweiligen Klasse
   
   -> Bestandteile der Ergebnisse:
+     
+      > Ableitungen (Möglichkeit der Anzeige aller, die zur Berechnung verwendet werden)
+      > Nullpunkte mit der X-Achse (Anzahl; Koordinaten)
       > Symmetrie vorhanden? 
           - X-Achse
           - Y-Achse
-      > Nullpunkte mit der X-Achse (Anzahl; Koordinaten)
-      > Hochpunkte (Anzahl; ggfs. Koordinaten)
-      > Tiefpunkte (Anzahl; ggfs. Koordinaten)
-      > Wendepunkte (Anzahl; ggfs. Koordinaten)
+      > Extremstellen  
+          - Hochpunkte (Anzahl; ggfs. Koordinaten)
+          - Tiefpunkte (Anzahl; ggfs. Koordinaten)
+          - Wendepunkte (Anzahl; ggfs. Koordinaten)
       > Krümmungs-Verhalten
       > Monotonie-Verhalten
-      > Grenzverhalten (limes)
-      > Ableitungen (Möglichkeit der Anzeige aller, die zur Berechnung verwendet werden)
-      >
+      > Grenzverhalten (limes) (gegen +/- unendlich)
       
 --> Die Ausgabe erfolgt in einer geordneten übersichtlichen Tabelle
 
