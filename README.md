@@ -29,3 +29,17 @@ Als Eingabe dienen folgende Funktionen:
 --> Die Ausgabe erfolgt in einer geordneten übersichtlichen Tabelle
 
 Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba, David Klumpp
+
+
+classes:
+  -InputFunction
+  -LinearFunction
+  -QuadraticFunction
+  -CurveDiscussionOutput
+
+files:
+  -main.py
+  -input_function.py
+  -linear_function.py
+  -quadratic_function.py
+  -curve_discussion_output.py
