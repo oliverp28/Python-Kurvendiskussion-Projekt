@@ -4,9 +4,9 @@ In diesem Projekt führen wir eine komplette Kurvendiskussion durch. Vorgabe: Ob
 
 Als Eingabe dienen folgende Funktionen:
 
--> lineare Funktionen
--> quadratische Funktion
-... (mögliche Ergänzung bei fehlender Komplexität)
+  -> lineare Funktionen
+  -> quadratische Funktion
+  ... (mögliche Ergänzung bei fehlender Komplexität)
 
 
 -> Die Eingabe wird durch Input-Validation geprüft und in eine der vorgegebenen Funktions-Kategorien eingeordnet
@@ -27,31 +27,31 @@ Als Eingabe dienen folgende Funktionen:
       > Monotonie-Verhalten
       > Grenzverhalten (limes) (gegen +/- unendlich)
       
---> Die Ausgabe erfolgt in einer geordneten übersichtlichen Tabelle
+    --> Die Ausgabe erfolgt in einer geordneten übersichtlichen Tabelle
 
 Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba, David Klumpp
 
 
-Optimierung kurz vor der Abgabe-----------------------
--> Dopplungen abschaffen und zusammenfassen
--> pylint Pyhton-Code Analyzer
-—> black (code formator)
-—> pytest (code tester)
-—> isort (Sortiert alle Python Module korrekt)
+    Optimierung kurz vor der Abgabe-----------------------
+    -> Dopplungen abschaffen und zusammenfassen
+    -> pylint Pyhton-Code Analyzer
+    —> black (code formator)
+    —> pytest (code tester)
+    —> isort (Sortiert alle Python Module korrekt)
 
 
-classes:
-  -InputFunction
-  -LinearFunction
-  -QuadraticFunction
-  -CurveDiscussionOutput
+    classes:
+      -InputFunction
+      -LinearFunction
+      -QuadraticFunction
+      -CurveDiscussionOutput
 
-files:
-  -main.py
-  -input_function.py
-  -linear_function.py
-  -quadratic_function.py
-  -curve_discussion_output.py
+    files:
+      -main.py
+      -input_function.py
+      -linear_function.py
+      -quadratic_function.py
+      -curve_discussion_output.py
 
 grober Programmablauf:
   main -> input_function -> linear_function | quadratic_function -> curve_discussion_output
