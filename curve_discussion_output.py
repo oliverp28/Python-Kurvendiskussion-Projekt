@@ -3,21 +3,31 @@ class Curve_Discussion_Output:
     def __init__(self, function, derivative="--", zeros="--", symmetry="--", extremum="--", curvature="--", monotony="--", limes="--"):
         """
             output the results of the curve discussion
+
+            Args:
+                function (string) : (Lineare oder Quadratische) Funktion
+                derivative (string) : Ableitung
+                zeros (list) : Nullstellen
+                symmetry (string) : Symmetrie
+                extremum (list) : Extremstellen (Hoch- / Tiefpunkt und Wendepunkt)
+                curvature (string) : Krümmungsverhalten
+                monotony (string) : Monotonie
+                limes (string) : Verhalten gegen Unendlich
         """
 
         if (len(function) % 2 == 0):
             function = function + " "
 
-        abstand = " " * 20
+        spacing = " " * 20
         max_len = 100
 
-        table_top_bottom = abstand + " " + ("_" * max_len)
+        table_top_bottom = spacing + " " + ("_" * max_len)
 
-        table_split = abstand + " " + ("-" * max_len)
+        table_split = spacing + " " + ("-" * max_len)
 
         self.create_header()
-        self.create_table_header(abstand, max_len, table_top_bottom, table_split, function)
-        self.fill_table(abstand, table_split, table_top_bottom)
+        self.create_table_header(spacing, max_len, table_top_bottom, table_split, function)
+        self.fill_table(spacing, table_split, table_top_bottom)
 
     def create_header(self):
         print(
@@ -31,67 +41,67 @@ class Curve_Discussion_Output:
             """
         )
 
-    def create_table_header(self, abstand, max_len, table_top_bottom, table_split,  function):
+    def create_table_header(self, spacing, max_len, table_top_bottom, table_split,  function):
 
         print(table_top_bottom)
 
-        abstand_help = "FUNKTION:  " + function
-        abstand2 = " " * round(((max_len - len(abstand_help)) / 2 ))
+        spacing_help = "FUNKTION:  " + function
+        spacing2 = " " * round(((max_len - len(spacing_help)) / 2 ))
 
-        table_gap = abstand + "|" + (" " * max_len) + "|"
-
-        print(table_gap)
-
-        print(abstand + "|" + abstand2 + abstand_help + abstand2 + "|")
+        table_gap = spacing + "|" + (" " * max_len) + "|"
 
         print(table_gap)
 
-        print(table_split)
+        print(spacing + "|" + spacing2 + spacing_help + spacing2 + "|")
 
-    def fill_table(self, abstand, table_split, table_top_bottom):
-
-        ende_ergebnis = (49 * " ") + "|"
-
-        gap_splitted = abstand + "|" + (50 * " ") + "|" + (49 * " ") + "|"
-
-        print(gap_splitted)
-        print(abstand + "|" + (16 * " ") + "ABLEITUNG / f´(x):" +  (16 * " ") + "|" + ende_ergebnis)
-        print(gap_splitted)
+        print(table_gap)
 
         print(table_split)
 
-        print(gap_splitted)
-        print(abstand + "|" + (18 * " ") + "NULLSTELLE(N):" + (18 * " ") + "|" + ende_ergebnis)
-        print(gap_splitted)
+    def fill_table(self, spacing, table_split, table_top_bottom):
 
-        print(table_split)
+        result_end = (49 * " ") + "|"
+
+        gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|"
 
         print(gap_splitted)
-        print(abstand + "|" + (20 * " ") + "SYMMETRIE:" + (20 * " ") + "|" + ende_ergebnis)
+        print(spacing + "|" + (16 * " ") + "ABLEITUNG / f´(x):" +  (16 * " ") + "|" + result_end)
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
-        print(abstand + "|" + (18 * " ") + "EXTREMSTELLEN:" + (18 * " ") + "|" + ende_ergebnis)
+        print(spacing + "|" + (18 * " ") + "NULLSTELLE(N):" + (18 * " ") + "|" + result_end)
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
-        print(abstand + "|" + (21 * " ") + "KRÜMMUNG:" + (20 * " ") + "|" + ende_ergebnis)
+        print(spacing + "|" + (20 * " ") + "SYMMETRIE:" + (20 * " ") + "|" + result_end)
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
-        print(abstand + "|" + (20 * " ") + "MONOTONIE:" + (20 * " ") + "|" + ende_ergebnis)
+        print(spacing + "|" + (18 * " ") + "EXTREMSTELLEN:" + (18 * " ") + "|" + result_end)
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
-        print(abstand + "|" + (18 * " ") + "GRENZVERHALTEN:" + (17 * " ") + "|" + ende_ergebnis)
+        print(spacing + "|" + (21 * " ") + "KRÜMMUNG:" + (20 * " ") + "|" + result_end)
+        print(gap_splitted)
+
+        print(table_split)
+
+        print(gap_splitted)
+        print(spacing + "|" + (20 * " ") + "MONOTONIE:" + (20 * " ") + "|" + result_end)
+        print(gap_splitted)
+
+        print(table_split)
+
+        print(gap_splitted)
+        print(spacing + "|" + (18 * " ") + "GRENZVERHALTEN:" + (17 * " ") + "|" + result_end)
         print(gap_splitted)
 
         print(table_top_bottom)

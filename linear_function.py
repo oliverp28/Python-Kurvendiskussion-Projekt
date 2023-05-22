@@ -1,6 +1,6 @@
-from curve_discussion_output import CurveDiscussionOutput
+from curve_discussion_output import Curve_Discussion_Output
 
-class LinearFunction:
+class Linear_Function:
 
     def __init__(self, function):
         """"""

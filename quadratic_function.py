@@ -1,4 +1,4 @@
-from curve_discussion_output import CurveDiscussionOutput
+from curve_discussion_output import Curve_Discussion_Output
 
 class Quadratic_Func:
     

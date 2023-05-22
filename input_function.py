@@ -1,7 +1,7 @@
-from linear_function import LinearFunction
-from quadratic_function import QuadraticFunction
+from linear_function import Linear_Function
+from quadratic_function import Quadratic_Function
 
-class InputFunction:
+class Input_Function:
 
     def __init__(self):
         """
