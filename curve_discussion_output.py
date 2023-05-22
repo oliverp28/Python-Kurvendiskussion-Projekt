@@ -1,4 +1,4 @@
-class CurveDiscussionOutput:
+class Curve_Discussion_Output:
 
     def __init__(self, function, derivative="--", zeros="--", symmetry="--", extremum="--", curvature="--", monotony="--", limes="--"):
         """
