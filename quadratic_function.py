@@ -46,12 +46,13 @@ class Quadratic_Func:
                 elif index == 2:
                     entry_list[index] = entry
 
-            if len(entry_list) == 2:
-                entry_list.append(0.0)        
+            while len(entry_list) != 3:
+                entry_list.append(0.0)       
 
             try: # testing if every entry is a number
                 for i, func_entry in enumerate(entry_list):
-                    entry_list[i] = float(func_entry)
+                    if not isinstance(entry, float):
+                        entry_list[i] = float(func_entry)
             except ValueError:
                 raise RuntimeError("faulty input")
         self._func = tuple(entry_list)
@@ -63,10 +64,38 @@ class Quadratic_Func:
     
     def __iter__(self):
         return iter(self._func)
+    
+    def __eq__(self, other):
+        if isinstance(other, Quadratic_Func):
+            for x, y in zip(self._func, other._func):
+                if x != y:
+                    return False
+            return True 
+        return False
 
 
     def __add__(self, other):
-        if isinstance(other, Quadratic_Func): # TODO replace Quadratic_Func with general func
+        if isinstance(other, Quadratic_Func): 
             temp = [x + y for x, y in zip (self._func, other._func)]
             return Quadratic_Func(temp, _format = False)
+        elif isinstance(other, (int, float)):
+            temp = [x for x in self._func]
+            temp[-1] += other
+            return Quadratic_Func(temp, _format = False)
+        else:
+            return NotImplemented
+        
+    __radd__ = __add__
 
+    def __sub__(self, other):
+        if isinstance(other, Quadratic_Func): 
+            temp = [x - y for x, y in zip (self._func, other._func)]
+            return Quadratic_Func(temp, _format = False)
+        elif isinstance(other, (int, float)):
+            temp = [x for x in self._func]
+            temp[-1] -= other
+            return Quadratic_Func(temp, _format = False)
+        else:
+            return NotImplemented
+        
+    __rsub__ = __sub__
