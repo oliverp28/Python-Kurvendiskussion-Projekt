@@ -18,7 +18,7 @@ def test_asdf():
 
 def test_input_validation_one_entry():
     assert g1_as_func is not None
-    # assert g1_as_func == (1.0, 0.0, 0.0)
+    assert g1_as_func == Quadratic_Func((1.0, 0.0, 0.0))
 
 def test_input_validation_two_entries():
     assert g3_as_func is not None
@@ -38,11 +38,26 @@ def test_add_two_function_second_is_shorter():
     assert (g3_as_func + g1_as_func) == Quadratic_Func((2.0, 0.0, 5.0))
 
 
+def test_sub_two_function_same_length():
+    assert (g2_as_func - g2_as_func) == Quadratic_Func((0.0, 0.0, 0.0)) 
+
+def test_sub_two_function_first_is_shorter():
+    assert (g1_as_func - g2_as_func) == Quadratic_Func((0.0, -2.0, 3.0))
+
+def test_sub_two_function_second_is_shorter():
+    assert (g3_as_func - g1_as_func) == Quadratic_Func((0.0, 0.0, 5.0))
+
+
 y_verschiebung = 5
-# def test_add_number(): # bekannt auch als y-Achsenverschiebung
-#     assert (g1_as_func + y_verschiebung) == ("1", "0", "5")
-#     assert (g2_as_func + y_verschiebung) == ("1", "2", "2")
-#     assert (g3_as_func + y_verschiebung) == ("1", "0", "10")
+def test_add_number(): # bekannt auch als y-Achsenverschiebung
+    assert (g1_as_func + y_verschiebung) == Quadratic_Func((1.0, 0.0, 5.0))
+    assert (g2_as_func + y_verschiebung) == Quadratic_Func((1.0, 2.0, 2.0))
+    assert (g3_as_func + y_verschiebung) == Quadratic_Func((1.0, 0.0, 10.0))
+
+def test_sub_number(): # bekannt auch als y-Achsenverschiebung
+    assert (g1_as_func - y_verschiebung) == Quadratic_Func((1.0, 0.0, -5.0))
+    assert (g2_as_func - y_verschiebung) == Quadratic_Func((1.0, 2.0, -8.0))
+    assert (g3_as_func - y_verschiebung) == Quadratic_Func((1.0, 0.0, 0.0))
 
 # def Nullstelle_berechnen_2_Schnittpunkte():
 
