@@ -1,6 +1,6 @@
 class Curve_Discussion_Output:
 
-    def __init__(self, function, function_type="--", derivative="--", zero_lin="--", zeros_quad=("--"), symmetry_x=False, symmetry_origin=False, extremum="--", curvature="--", monotony="--", limes="--"):
+    def __init__(self, function, function_type="--", derivative=0, zero_lin="--", zeros_quad=("--"), symmetry_x=False, symmetry_origin=False, extremum="--", curvature="--", monotony="--", limes="--"):
         """
             output the results of the curve discussion
 
@@ -37,6 +37,12 @@ class Curve_Discussion_Output:
             self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotony)
 
     def result_end(self, help):
+        """
+            create the result output for each column
+
+            Args:
+                :param help:
+        """
 
         if (len(help) % 2 == 0):
             help += " "
@@ -48,6 +54,9 @@ class Curve_Discussion_Output:
         return return_val
 
     def create_header(self):
+        """
+            print out the header of the output
+        """
         print(
             """
              ██████╗██╗   ██╗██████╗ ██╗   ██╗███████╗    ██████╗ ██╗███████╗ ██████╗██╗   ██╗███████╗███████╗██╗ ██████╗ ███╗   ██╗
@@ -60,6 +69,16 @@ class Curve_Discussion_Output:
         )
 
     def create_table_header(self, spacing, max_len, table_top_bottom, table_split,  function):
+        """
+            print out the header of the table
+
+            Args:
+                :param spacing:
+                :param max_len:
+                :param table_top_bottom:
+                :param table_split:
+                :param function:
+        """
 
         print(table_top_bottom)
 
@@ -77,6 +96,19 @@ class Curve_Discussion_Output:
         print(table_split)
 
     def fill_table_lin(self, spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotony):
+        """
+            print out the filled table with the results of the Curve Discussion (linear function)
+
+            Args:
+                :param spacing:
+                :param table_split:
+                :param table_top_bottom:
+                :param derivative:
+                :param zero_lin:
+                :param symmetry_x:
+                :param symmetry_origin:
+                :param monotony:
+        """
 
         gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|"
 
@@ -137,6 +169,14 @@ class Curve_Discussion_Output:
         print(table_top_bottom)
 
     def fill_table_quad(self, spacing, table_split, table_top_bottom):
+        """
+            print out the filled table with the results of the Curve Discussion (quadratic function)
+
+            Args:
+                :param spacing:
+                :param table_split:
+                :param table_top_bottom:
+        """
 
         result_end = (49 * " ") + "|"
 
