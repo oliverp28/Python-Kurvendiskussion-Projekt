@@ -24,10 +24,14 @@ class Linear_Func:
                     --> ax * b
 
         """
-        # Nullstellen ggfs. 
 
-    
         self.function = self.validate_function(function)
+
+        self.calculate_derivative()
+        self.calculate_symmetry_x()
+        self.calculate_point_symmetry_origin()
+        self.calculate_monotonicity()
+
 
     def validate_function(self, function):
         function = function.replace(" ", "")
@@ -92,15 +96,33 @@ class Linear_Func:
         return derivative 
             
 
-  #  def calculate_zeros(self):
-        a, b, replace_a= self.parse_function()
+    def calculate_zeros(self):
+        a, b, replace_a = self.parse_function()
   
-        if a == "" and b != "0" and replace_a == False:
-            zero = "Die Funktion hat keine Nullstellen"
-            return zero  # Funktion hat keine Nullstellen
+        if len(a) == 0:
+         if replace_a == True and eval(b) == 0:
+              zero = 0
+              return zero 
+        
+         elif replace_a == True and eval(b) != 0:
+              zero = -eval(b) / 1
+              return zero
+         
+         elif replace_a == False:
+            zero = "Keine Nullstelle vorhanden."
+            return zero
 
-        zero = -eval(b) / eval(a)
-        return zero
+        if eval(a) == 0:
+            zero = "Keine Nullstelle vorhanden."
+            return zero
+
+        if replace_a == True and b == "0":
+            zero = 0
+            return zero
+
+        if len(a) >= 1:
+            zero = -eval(b) / eval(a)
+            return zero
 
     def calculate_symmetry_x(self):
         a, b, replace_a = self.parse_function()
@@ -146,4 +168,4 @@ class Linear_Func:
 
         return monotonicity
 
-        
+
