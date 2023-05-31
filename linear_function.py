@@ -24,13 +24,8 @@ class Linear_Func:
                     --> ax * b
 
         """
+        # Nullstellen ggfs. 
 
-        # Input grob testen auf Richtigkeit
-        # Eingaben: '+ 0 * x - 0'
-        # x / 0 oder 0 / x
-        # 0x
-        # 0
-        # Try - Except
     
         self.function = self.validate_function(function)
 
@@ -47,6 +42,7 @@ class Linear_Func:
         function = self.function
         a = ""
         b = ""
+        replace_a = ""
         found_x = False
     
         for char in function:
@@ -62,48 +58,66 @@ class Linear_Func:
         else:
             b = function
             a = ""
-         
-        a = a.replace("x", "")
+
+        if "x" in a:
+            a = a.replace("x", "")
+            replace_a = True
+        else:
+            replace_a = False
 
         if a == "+" or a == "-":
             a += "1"
-        
-        
-    
-        return a, b
+            
+        return a, b, replace_a
     
     def calculate_derivative(self): # a und b in einer Eingabe als Tuple!!
-        a, b = self.parse_function()
+        a, _, replace_a = self.parse_function()
 
-        if len(a) == 0:
-            derivative = "Keine Ableitung von f(x) = " + str(b) + " möglich."
+        if len(a) == 0 and replace_a == False:
+            derivative = "Keine Ableitung möglich."
             return derivative
         
+        elif len(a) == 0 and replace_a == True:
+            derivative = 1
+            return derivative
+        
+
         a = eval(a)
 
         if a == 0:
-            derivative = "Keine Ableitung von "+ str(a) + " möglich."
+            derivative = "Keine Ableitung möglich."
         else:
             derivative = a
         
         return derivative 
             
 
-    #def calculate_symmetry_y(self):
-        #a, b = self.parse_function()
-        # Fall x = 5 behandeln?
+  #  def calculate_zeros(self):
+        a, b, replace_a= self.parse_function()
+  
+        if a == "" and b != "0" and replace_a == False:
+            zero = "Die Funktion hat keine Nullstellen"
+            return zero  # Funktion hat keine Nullstellen
+
+        zero = -eval(b) / eval(a)
+        return zero
 
     def calculate_symmetry_x(self):
-        a, b = self.parse_function()
+        a, b, replace_a = self.parse_function()
+
         if a == "" or eval(a) == 0 and eval(b) != 0:
             symmetrie_x = True
+            if a == "" and replace_a == True:
+                symmetrie_x = False
+
         else:
             symmetrie_x = False
 
         return symmetrie_x
+    
 
     def calculate_point_symmetry_origin(self):
-        _, b = self.parse_function()
+        _, b, _ = self.parse_function()
         b = eval(b)
         if b == 0:
             point_symmetriy_origin = True
@@ -112,10 +126,15 @@ class Linear_Func:
         
         return point_symmetriy_origin
     
+
     def calculate_monotonicity(self):
-        a, _ = self.parse_function()
-        if a == "":
-            monotonicity = "steigend"
+        a, _, replace_a = self.parse_function()
+    
+        if a == "": # x wurde abgeschnitten aber der Fall f(x) = x wird hier behandelt
+            if replace_a == True:
+                monotonicity = "steigend"
+            else:
+                monotonicity = "konstant"
         else:
             a = eval(a)
             if a > 0:
