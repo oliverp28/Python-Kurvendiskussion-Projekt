@@ -1,11 +1,7 @@
 """
-    module doc
+    Dieses Modul enthält eine Klasse zur Ausgabe einer Kurvendiskussion, mithilfe der zuvor berechneten Werte.
 """
-class Curve_Discussion_Output:
-    """
-        class doc
-    """
-
+class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
     def __init__(self,
                  function,
                  function_type="--",
@@ -19,7 +15,7 @@ class Curve_Discussion_Output:
                  monotonicity="--",
                  limes="--"):
         """
-            output the results of the curve discussion
+            Gibt die Ergebnisse der Kurvendiskussion aus.
 
             Args:
                 function (string) : (Lineare oder Quadratische) Funktion
@@ -29,7 +25,7 @@ class Curve_Discussion_Output:
                 zeros_quad (tuple) : Nullstellen
                 symmetry_x (bool) : Symmetrie zur x-Achse
                 symmetry_origin (bool) : Symmetrie zum Ursprung
-                extremum  : Extremstellen (Hoch- / Tiefpunkt und Wendepunkt)
+                extremum (): Extremstellen (Hoch- / Tiefpunkt und Wendepunkt)
                 curvature (string) : Krümmungsverhalten
                 monotonicity (string) : Monotonie
                 limes (string) : Verhalten gegen Unendlich
@@ -41,25 +37,25 @@ class Curve_Discussion_Output:
         spacing = " " * 20
         max_len = 100
 
-        table_top_bottom = spacing + " " + ("_" * max_len)
+        table_top_bottom = spacing + " " + ("_" * max_len) # Trennlinie für Tabellenkopf und -ende
 
-        table_split = spacing + " " + ("-" * max_len)
+        table_split = spacing + " " + ("-" * max_len) # Trennlinie für Tabellenspalten
 
-        self.create_header()
-        self.create_table_header(spacing, max_len, table_top_bottom, table_split, function)
+        self.create_header() # Header der Ausgabe erstellen und ausgeben
+        self.create_table_header(spacing, max_len, table_top_bottom, table_split, function) # Tabellenkopf erstellen und ausgeben
 
         if function_type == "quad":
-            self.fill_table_quad(spacing, table_split, table_top_bottom)
+            self.fill_table_quad(spacing, table_split, table_top_bottom) # Tabelle für quadratische Funktion erstellen
         else:
-            self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity)
+            self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity) # Tabelle für lineare Funktion erstellen
 
     def result_end(self,
                    helper_var):
         """
-            create the result output for each column
+            Erzeugt die Ausgabe/ das Ergebnis für jede Spalte.
 
             Args:
-                :param helper_var:
+                helper_var: Hilfsvariable
         """
 
         if len(helper_var) % 2 == 0:
@@ -73,7 +69,7 @@ class Curve_Discussion_Output:
 
     def create_header(self):
         """
-            print out the header of the output
+            Gibt den Header der Ausgabe aus.
         """
         print(
             """
@@ -93,14 +89,14 @@ class Curve_Discussion_Output:
                             table_split,
                             function):
         """
-            print out the header of the table
+            Gibt den Tabellenkopf aus.
 
             Args:
-                :param spacing:
-                :param max_len:
-                :param table_top_bottom:
-                :param table_split:
-                :param function:
+                spacing: Leerzeichen für Einrückungen
+                max_len: Maximale Breite der Tabelle
+                table_top_bottom: Trennlinie für Tabellenkopf und -ende
+                table_split: Trennlinie für Tabellenspalten
+                function: Funktionstyp
         """
 
         print(table_top_bottom)
@@ -128,20 +124,20 @@ class Curve_Discussion_Output:
                        symmetry_origin,
                        monotonicity):
         """
-            print out the filled table with the results of the Curve Discussion (linear function)
+            Gibt die gefüllte Tabelle mit den Ergebnissen der Kurvendiskussion (lineare Funktion) aus.
 
             Args:
-                :param spacing:
-                :param table_split:
-                :param table_top_bottom:
-                :param derivative:
-                :param zero_lin:
-                :param symmetry_x:
-                :param symmetry_origin:
-                :param monotonicity:
+                spacing: Leerzeichen für Einrückungen
+                table_split: Trennlinie für Tabellenspalten
+                table_top_bottom: Trennlinie für Tabellenkopf und -ende
+                derivative: Ableitung
+                zero_lin: Nullstelle
+                symmetry_x: Symmetrie zur x-Achse
+                symmetry_origin: Symmetrie zum Ursprung
+                monotonicity: Monotonie
         """
 
-        gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|"
+        gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|" # Trennlinie für Tabellenspalten mit einem Trennstrich in der Mitte
 
         print(gap_splitted)
 
@@ -208,12 +204,12 @@ class Curve_Discussion_Output:
                         table_split,
                         table_top_bottom):
         """
-            print out the filled table with the results of the Curve Discussion (quadratic function)
+            Gibt die gefüllte Tabelle mit den Ergebnissen der Kurvendiskussion (quadratische Funktion) aus.
 
             Args:
-                :param spacing:
-                :param table_split:
-                :param table_top_bottom:
+                spacing: Leerzeichen für Einrückungen
+                table_split: Trennlinie für Tabellenspalten
+                table_top_bottom: Trennlinie für Tabellenkopf und -ende
         """
 
         result_end = (49 * " ") + "|"
