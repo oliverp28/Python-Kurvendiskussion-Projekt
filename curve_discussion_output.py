@@ -14,6 +14,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                  curvature="--",
                  monotonicity="--",
                  limes="--"):
+
         """
             Gibt die Ergebnisse der Kurvendiskussion aus.
 
@@ -31,15 +32,17 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                 limes (string) : Verhalten gegen Unendlich
         """
 
+        spacing_end = " " * 9 + "║"
+
         if len(function) % 2 == 0:
             function = function + " "
 
-        spacing = " " * 20
+        spacing =  " " * 12 + "║" + " " * 8
         max_len = 100
 
-        table_top_bottom = spacing + " " + ("_" * max_len) # Trennlinie für Tabellenkopf und -ende
+        table_top_bottom = spacing + " " + ("_" * max_len) + spacing_end # Trennlinie für Tabellenkopf und -ende
 
-        table_split = spacing + " " + ("-" * max_len) # Trennlinie für Tabellenspalten
+        table_split = spacing + " " + ("-" * max_len) + spacing_end # Trennlinie für Tabellenspalten
 
         self.create_header() # Header der Ausgabe erstellen und ausgeben
         self.create_table_header(spacing, max_len, table_top_bottom, table_split, function) # Tabellenkopf erstellen und ausgeben
@@ -49,25 +52,32 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
         else:
             self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity) # Tabelle für lineare Funktion erstellen
 
+        self.create_bottom()
+
     def result_end(self,
-                   helper_var):
+                   input_var):
+
         """
             Erzeugt die Ausgabe/ das Ergebnis für jede Spalte.
+                -> Input wird aufbereitet für die Ausgabe
 
             Args:
-                helper_var: Hilfsvariable
+                input_var: Inputvariable
         """
 
-        if len(helper_var) % 2 == 0:
-            helper_var += " "
+        spacing_end = " " * 8 + "║"
 
-        spacing_help = " " * round(((49 - len(helper_var)) / 2))
+        if len(input_var) % 2 == 0:
+            input_var += " "
 
-        return_val = spacing_help + helper_var + spacing_help + "|"
+        spacing_help = " " * round(((49 - len(input_var)) / 2))
+
+        return_val = spacing_help + input_var + spacing_help + "|" + spacing_end
 
         return return_val
 
     def create_header(self):
+
         """
             Gibt den Header der Ausgabe aus.
         """
@@ -88,6 +98,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                             table_top_bottom,
                             table_split,
                             function):
+
         """
             Gibt den Tabellenkopf aus.
 
@@ -99,16 +110,18 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                 function: Funktionstyp
         """
 
+        spacing_end = " " * 8 + "║"
+
         print(table_top_bottom)
 
         spacing_help = "FUNKTION:  " + function
         spacing2 = " " * round(((max_len - len(spacing_help)) / 2 ))
 
-        table_gap = spacing + "|" + (" " * max_len) + "|"
+        table_gap = spacing + "|" + (" " * max_len) + "|" + spacing_end
 
         print(table_gap)
 
-        print(spacing + "|" + spacing2 + spacing_help + spacing2 + "|")
+        print(spacing + "|" + spacing2 + spacing_help + spacing2 + "|" + spacing_end)
 
         print(table_gap)
 
@@ -123,6 +136,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                        symmetry_x,
                        symmetry_origin,
                        monotonicity):
+
         """
             Gibt die gefüllte Tabelle mit den Ergebnissen der Kurvendiskussion (lineare Funktion) aus.
 
@@ -137,7 +151,19 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                 monotonicity: Monotonie
         """
 
-        gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|" # Trennlinie für Tabellenspalten mit einem Trennstrich in der Mitte
+        spacing_end = " " * 8 + "║"
+
+        gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|" + spacing_end # Trennlinie für Tabellenspalten mit einem Trennstrich in der Mitte
+
+        print(gap_splitted)
+
+        result_end = self.result_end("lineare Funktion")
+
+        print(spacing + "|" + (17 * " ") + "ART DER FUNKTION:" + (16 * " ") + "|" + result_end)
+
+        print(gap_splitted)
+
+        print(table_split)
 
         print(gap_splitted)
 
@@ -199,10 +225,13 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
 
         print(table_top_bottom)
 
+        print(spacing + 110 * " " + "║")
+
     def fill_table_quad(self,
                         spacing,
                         table_split,
                         table_top_bottom):
+
         """
             Gibt die gefüllte Tabelle mit den Ergebnissen der Kurvendiskussion (quadratische Funktion) aus.
 
@@ -212,9 +241,21 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                 table_top_bottom: Trennlinie für Tabellenkopf und -ende
         """
 
+        spacing_end = " " * 8 + "║"
+
         result_end = (49 * " ") + "|"
 
-        gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|"
+        gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|" + spacing_end
+
+        print(gap_splitted)
+
+        result_end = self.result_end("quadratische Funktion")
+
+        print(spacing + "|" + (17 * " ") + "ART DER FUNKTION:" + (16 * " ") + "|" + result_end)
+
+        print(gap_splitted)
+
+        print(table_split)
 
         print(gap_splitted)
         print(spacing + "|" + (16 * " ") + "ABLEITUNG / f´(x):" + (16 * " ") + "|" + result_end)
@@ -257,3 +298,13 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
         print(gap_splitted)
 
         print(table_top_bottom)
+
+        print(spacing + 110 * " " + "║")
+
+    def create_bottom(self):
+        print(
+            """
+            ║██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████║
+            ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+            """
+        )
