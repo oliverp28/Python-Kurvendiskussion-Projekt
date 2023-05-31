@@ -1,6 +1,6 @@
 class Curve_Discussion_Output:
 
-    def __init__(self, function, function_type="--", derivative=0, zero_lin="--", zeros_quad=("--"), symmetry_x=False, symmetry_origin=False, extremum="--", curvature="--", monotony="--", limes="--"):
+    def __init__(self, function, function_type="--", derivative=0, zero_lin="--", zeros_quad=("--"), symmetry_x=False, symmetry_origin=False, extremum="--", curvature="--", monotonicity="--", limes="--"):
         """
             output the results of the curve discussion
 
@@ -14,7 +14,7 @@ class Curve_Discussion_Output:
                 symmetry_origin (bool) : Symmetrie zum Ursprung
                 extremum  : Extremstellen (Hoch- / Tiefpunkt und Wendepunkt)
                 curvature (string) : Krümmungsverhalten
-                monotony (string) : Monotonie
+                monotonicity (string) : Monotonie
                 limes (string) : Verhalten gegen Unendlich
         """
 
@@ -34,7 +34,7 @@ class Curve_Discussion_Output:
         if (function_type == "quad"):
             self.fill_table_quad(spacing, table_split, table_top_bottom)
         else:
-            self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotony)
+            self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity)
 
     def result_end(self, help):
         """
@@ -95,7 +95,7 @@ class Curve_Discussion_Output:
 
         print(table_split)
 
-    def fill_table_lin(self, spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotony):
+    def fill_table_lin(self, spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity):
         """
             print out the filled table with the results of the Curve Discussion (linear function)
 
@@ -107,7 +107,7 @@ class Curve_Discussion_Output:
                 :param zero_lin:
                 :param symmetry_x:
                 :param symmetry_origin:
-                :param monotony:
+                :param monotonicity:
         """
 
         gap_splitted = spacing + "|" + (50 * " ") + "|" + (49 * " ") + "|"
@@ -124,7 +124,7 @@ class Curve_Discussion_Output:
 
         print(gap_splitted)
 
-        result_end = self.result_end(zero_lin)
+        result_end = self.result_end(str(zero_lin))
 
         print(spacing + "|" + (20 * " ") + "NULLSTELLE:" + (19 * " ") + "|" + result_end)
         print(gap_splitted)
@@ -161,7 +161,7 @@ class Curve_Discussion_Output:
 
         print(gap_splitted)
 
-        result_end = self.result_end(monotony)
+        result_end = self.result_end(monotonicity)
 
         print(spacing + "|" + (20 * " ") + "MONOTONIE:" + (20 * " ") + "|" + result_end)
         print(gap_splitted)
