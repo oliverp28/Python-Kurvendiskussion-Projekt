@@ -1,6 +1,23 @@
+"""
+    module doc
+"""
 class Curve_Discussion_Output:
+    """
+        class doc
+    """
 
-    def __init__(self, function, function_type="--", derivative=0, zero_lin="--", zeros_quad=("--"), symmetry_x=False, symmetry_origin=False, extremum="--", curvature="--", monotonicity="--", limes="--"):
+    def __init__(self,
+                 function,
+                 function_type="--",
+                 derivative=0,
+                 zero_lin="--",
+                 zeros_quad=("--"),
+                 symmetry_x=False,
+                 symmetry_origin=False,
+                 extremum="--",
+                 curvature="--",
+                 monotonicity="--",
+                 limes="--"):
         """
             output the results of the curve discussion
 
@@ -18,7 +35,7 @@ class Curve_Discussion_Output:
                 limes (string) : Verhalten gegen Unendlich
         """
 
-        if (len(function) % 2 == 0):
+        if len(function) % 2 == 0:
             function = function + " "
 
         spacing = " " * 20
@@ -31,25 +48,26 @@ class Curve_Discussion_Output:
         self.create_header()
         self.create_table_header(spacing, max_len, table_top_bottom, table_split, function)
 
-        if (function_type == "quad"):
+        if function_type == "quad":
             self.fill_table_quad(spacing, table_split, table_top_bottom)
         else:
             self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity)
 
-    def result_end(self, help):
+    def result_end(self,
+                   helper_var):
         """
             create the result output for each column
 
             Args:
-                :param help:
+                :param helper_var:
         """
 
-        if (len(help) % 2 == 0):
-            help += " "
+        if len(helper_var) % 2 == 0:
+            helper_var += " "
 
-        spacing_help = " " * round(((49 - len(help)) / 2))
+        spacing_help = " " * round(((49 - len(helper_var)) / 2))
 
-        return_val = spacing_help + help + spacing_help + "|"
+        return_val = spacing_help + helper_var + spacing_help + "|"
 
         return return_val
 
@@ -64,11 +82,16 @@ class Curve_Discussion_Output:
             ██║     ██║   ██║██████╔╝██║   ██║█████╗      ██║  ██║██║███████╗██║     ██║   ██║███████╗███████╗██║██║   ██║██╔██╗ ██║
             ██║     ██║   ██║██╔══██╗╚██╗ ██╔╝██╔══╝      ██║  ██║██║╚════██║██║     ██║   ██║╚════██║╚════██║██║██║   ██║██║╚██╗██║
             ╚██████╗╚██████╔╝██║  ██║ ╚████╔╝ ███████╗    ██████╔╝██║███████║╚██████╗╚██████╔╝███████║███████║██║╚██████╔╝██║ ╚████║
-             ╚═════╝ ╚═════╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝    ╚═════╝ ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝                                                                                  
+             ╚═════╝ ╚═════╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝    ╚═════╝ ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝
             """
         )
 
-    def create_table_header(self, spacing, max_len, table_top_bottom, table_split,  function):
+    def create_table_header(self,
+                            spacing,
+                            max_len,
+                            table_top_bottom,
+                            table_split,
+                            function):
         """
             print out the header of the table
 
@@ -95,7 +118,15 @@ class Curve_Discussion_Output:
 
         print(table_split)
 
-    def fill_table_lin(self, spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity):
+    def fill_table_lin(self,
+                       spacing,
+                       table_split,
+                       table_top_bottom,
+                       derivative,
+                       zero_lin,
+                       symmetry_x,
+                       symmetry_origin,
+                       monotonicity):
         """
             print out the filled table with the results of the Curve Discussion (linear function)
 
@@ -127,34 +158,37 @@ class Curve_Discussion_Output:
         result_end = self.result_end(str(zero_lin))
 
         print(spacing + "|" + (20 * " ") + "NULLSTELLE:" + (19 * " ") + "|" + result_end)
+
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
 
-        if (symmetry_x == True):
+        if symmetry_x is True:
             symmetry_x = "JA"
         else:
             symmetry_x = "NEIN"
 
         result_end = self.result_end(symmetry_x)
 
-        print(spacing + "|" + (14 * " ") + "SYMMETRIE ZUR X-ACHSE ?" + (13 * " ") + "|" + result_end)
+        print(spacing+"|" + (14 * " ") + "SYMMETRIE ZUR X-ACHSE ?" + (13 * " ") + "|" + result_end)
+
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
 
-        if (symmetry_origin == True):
+        if symmetry_origin is True:
             symmetry_origin = "JA"
         else:
             symmetry_origin = "NEIN"
 
         result_end = self.result_end(symmetry_origin)
 
-        print(spacing + "|" + (13 * " ") + "SYMMETRIE ZUM URSPRUNG ?" + (13 * " ") + "|" + result_end)
+        print(spacing+"|" + (13 * " ") + "SYMMETRIE ZUM URSPRUNG ?" + (13 * " ") + "|"+result_end)
+
         print(gap_splitted)
 
         print(table_split)
@@ -164,11 +198,15 @@ class Curve_Discussion_Output:
         result_end = self.result_end(monotonicity)
 
         print(spacing + "|" + (20 * " ") + "MONOTONIE:" + (20 * " ") + "|" + result_end)
+
         print(gap_splitted)
 
         print(table_top_bottom)
 
-    def fill_table_quad(self, spacing, table_split, table_top_bottom):
+    def fill_table_quad(self,
+                        spacing,
+                        table_split,
+                        table_top_bottom):
         """
             print out the filled table with the results of the Curve Discussion (quadratic function)
 
