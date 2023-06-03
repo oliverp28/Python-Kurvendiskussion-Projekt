@@ -308,3 +308,9 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
             ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
             """
         )
+
+        print((47 * " ") + "╔═ © created by Oliver P., Stefan, David and Rami ═╗")
+
+        print((47 * " ") + "╚══════════════════════════════════════════════════╝")
+
+        print(len("╔═ © created by Oliver P., Stefan, David and Rami ═╗"))
