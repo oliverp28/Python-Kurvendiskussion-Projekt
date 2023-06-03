@@ -1,5 +1,4 @@
-from curve_discussion_output import Curve_Discussion_Output
-
+import curve_discussion_output
 
 class Linear_Func:
     """
@@ -36,10 +35,13 @@ class Linear_Func:
             function
         )  # function, als Verwendung in Form einer Klassenvariable
 
-        self.calculate_derivative()  # Aufruf der Funktionen
-        self.calculate_symmetry_x()
-        self.calculate_point_symmetry_origin()
-        self.calculate_monotonicity()
+        curve_discussion_output.Curve_Discussion_Output(function=function,
+                                                        function_type="lin",
+                                                        derivative=self.calculate_derivative(),
+                                                        zero_lin=self.calculate_zeros(),
+                                                        symmetry_x=self.calculate_symmetry_x(),
+                                                        symmetry_origin=self.calculate_point_symmetry_origin(),
+                                                        monotonicity=self.calculate_monotonicity())
 
     def validate_function(self, function):
         """
