@@ -36,7 +36,7 @@ class Input_Function:
             ValueError: If the input function is invalid.
         """
         # Check for invalid cases
-        invalid_cases = ["/x", "x/", "*x", "x*", "^x", "x^"]
+        invalid_cases = ["/x", "x/", "*x", "x* ", "^x", "x^ "]
         for case in invalid_cases:
             if case in function:
                 raise ValueError("Invalid input " + case)
@@ -52,14 +52,11 @@ class Input_Function:
             ValueError: If the linear function is invalid.
         """
         # Check for invalid cases in linear function
-        if "x^" in function or "^x" in function:
+        if "x^ " in function or "^x" in function:
             raise ValueError("Invalid input. Linear functions should not contain '^'")
 
         if function.count("x") > 1:
             raise ValueError("Invalid input. Linear functions should have only one 'x' term")
-
-        if any(symbol.isdigit() for symbol in function):
-            raise ValueError("Invalid input. Symbol numbers are not allowed. Please use the correct format.")
 
         if "x" not in function:
             raise ValueError("Invalid input. Linear functions should contain the term 'x'")
@@ -75,17 +72,11 @@ class Input_Function:
             ValueError: If the quadratic function is invalid.
         """
         # Check for invalid cases in quadratic function
-        if function.count("x^2") > 1:
+        if function.count("x^2") > 1 or function.count("x**2") > 1:
             raise ValueError("Invalid input. Quadratic functions should have only one 'x^2' term")
 
         if function.count("x") > 2:
             raise ValueError("Invalid input. Quadratic functions should have at most two 'x' terms")
-
-        if any(symbol.isdigit() for symbol in function):
-            raise ValueError("Invalid input. Symbol numbers are not allowed. Please use the correct format")
-
-        if "x^2" not in function:
-            raise ValueError("Invalid input. Quadratic functions should contain the term 'x^2'")
 
     def which_function(self, function):
         """
@@ -104,16 +95,16 @@ class Input_Function:
             # If no function is specified, raise an error
             raise ValueError("Please specify a function")
 
-        #if "," in function:
-        #    # If the input contains a comma, it will be replaced by a point
-        #    function = function.replace(",", ".")
+        if "," in function:
+            # If the input contains a comma, it will be replaced by a point
+            function = function.replace(",", ".")
             
                              
         try:
-            if "x^2" or "x**2" in function:
+            if "x^2" in function or "x**2" in function:
                 # If the input contains "x^2", it's a quadratic function
                 self.validate_quadratic_function(function)
-                quadratic_function.Quadratic_Func(function.lower())  # Create a Quadratic_Function instance with lowercase x
+                quadratic_function.Quadratic_Func(self.split_function_quad(function=function.lower())) # Create a Quadratic_Function instance with lowercase x
             elif "x" in function and "^" not in function:
                 # If the input contains "x" but doesn't have "^", it's a linear function
                 self.validate_linear_function(function)
@@ -136,3 +127,15 @@ class Input_Function:
             input_func = Input_Function(function)
         except ValueError as e:
             print(e)
+
+    def split_function_quad(self, function):
+
+        if "+" in function:
+            function = function.replace(" ", "")
+            function = function.replace("+", ", ")
+            return function
+
+        if "-" in function:
+            function = function.replace(" ", "")
+            function = function.replace("-", ", -")
+            return function
