@@ -1,7 +1,11 @@
+""" Importieren der Klasse linear_function. """
 import linear_function
 
 
 def test_typical():
+    """
+    Test für eine typische lineare Funktion.
+    """
     test_func = "5x + 2"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == 5
@@ -12,6 +16,9 @@ def test_typical():
 
 
 def test_zero_multiply_with_positiv_end():
+    """
+    Test für eine Funktion mit einer 0 und einem positiven Ende.
+    """
     test_func = "+ 0 * x + 1"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == "Keine Ableitung möglich."
@@ -22,6 +29,9 @@ def test_zero_multiply_with_positiv_end():
 
 
 def test_zero_multiply_with_negativ_end():
+    """
+    Test für eine Funktion mit einer 0 und einem negativen Ende.
+    """
     test_func = "+ 0 * x - 1"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == "Keine Ableitung möglich."
@@ -32,6 +42,9 @@ def test_zero_multiply_with_negativ_end():
 
 
 def test_one_multiply_with_positive_end():
+    """
+    Test für eine Funktion mit einer 1 und einem positiven Ende.
+    """
     test_func = "+ 1 * x + 1"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == 1
@@ -42,6 +55,9 @@ def test_one_multiply_with_positive_end():
 
 
 def test_one_negative_multiply_with_negative_end():
+    """
+    Test für eine Funktion mit einem negativen Multiplikator und einem negativen Ende.
+    """
     test_func = "- 1 * x - 1"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == -1
@@ -52,6 +68,9 @@ def test_one_negative_multiply_with_negative_end():
 
 
 def test_one_negative_multiply_with_0_end():
+    """
+    Test für eine Funktion mit einem negativen Multiplikator und einer 0 am Ende.
+    """
     test_func = "- 1 * x - 0"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == -1
@@ -62,6 +81,9 @@ def test_one_negative_multiply_with_0_end():
 
 
 def test_only_x():
+    """
+    Test für eine Funktion x.
+    """
     test_func = "x"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == 1
@@ -72,6 +94,9 @@ def test_only_x():
 
 
 def test_only_negative_x():
+    """
+    Test für eine Funktion mit einem negativen x.
+    """
     test_func = "- x"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == -1
@@ -82,6 +107,9 @@ def test_only_negative_x():
 
 
 def test_only_one():
+    """
+    Test für eine Funktion mit einer 1.
+    """
     test_func = "1"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == "Keine Ableitung möglich."
@@ -92,6 +120,9 @@ def test_only_one():
 
 
 def test_decimal_num_with_different_signs():
+    """
+    Test für eine Funktion mit einer Kommazahl und unterschiedliche Trennzeichen.
+    """
     test_func = "0,5 * x + 1.0"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == 0.5
@@ -102,6 +133,9 @@ def test_decimal_num_with_different_signs():
 
 
 def test_only_decimal_num():
+    """
+    Test für eine Funktion mit Kommazahlen.
+    """
     test_func = "0,1"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == "Keine Ableitung möglich."
@@ -112,6 +146,9 @@ def test_only_decimal_num():
 
 
 def test_high_value():
+    """
+    Test für eine Funktion mit hohen Werten.
+    """
     test_func = "100x + 500"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == 100
@@ -122,6 +159,9 @@ def test_high_value():
 
 
 def test_only_x_with_end():
+    """
+    Test für eine Funktion mit x und einem Ende.
+    """
     test_func = "x + 2"
     lin_function = linear_function.Linear_Func(test_func)
     assert lin_function.calculate_derivative() == 1
