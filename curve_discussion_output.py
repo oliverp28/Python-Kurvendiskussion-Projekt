@@ -9,11 +9,10 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                  zero_lin="--",
                  zeros_quad=("--"),
                  symmetry_x=False,
+                 symmetry_y=False,
                  symmetry_origin=False,
                  extremum="--",
-                 curvature="--",
-                 monotonicity="--",
-                 limes="--"):
+                 monotonicity="--"):
 
         """
             Gibt die Ergebnisse der Kurvendiskussion aus.
@@ -25,6 +24,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                 zero_lin (string) : Nullstelle
                 zeros_quad (tuple) : Nullstellen
                 symmetry_x (bool) : Symmetrie zur x-Achse
+                symmetry_y (bool) : Symmetrie zur y-Achse
                 symmetry_origin (bool) : Symmetrie zum Ursprung
                 extremum (): Extremstellen (Hoch- / Tiefpunkt und Wendepunkt)
                 curvature (string) : Krümmungsverhalten
@@ -48,7 +48,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
         self.create_table_header(spacing, max_len, table_top_bottom, table_split, function) # Tabellenkopf erstellen und ausgeben
 
         if function_type == "quad":
-            self.fill_table_quad(spacing, table_split, table_top_bottom, derivative, zeros_quad, symmetry_x, extremum) # Tabelle für quadratische Funktion erstellen
+            self.fill_table_quad(spacing, table_split, table_top_bottom, derivative, zeros_quad, symmetry_y, extremum) # Tabelle für quadratische Funktion erstellen
         else:
             self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity) # Tabelle für lineare Funktion erstellen
 
@@ -187,12 +187,12 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
 
         print(gap_splitted)
 
-        if symmetry_x is True:
-            symmetry_x = "JA"
+        if symmetry_y is True:
+            symmetry_y = "JA"
         else:
-            symmetry_x = "NEIN"
+            symmetry_y = "NEIN"
 
-        result_end = self.result_end(symmetry_x)
+        result_end = self.result_end(symmetry_y)
 
         print(spacing+"|" + (14 * " ") + "SYMMETRIE ZUR X-ACHSE ?" + (13 * " ") + "|" + result_end)
 
@@ -293,7 +293,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
 
         result_end = self.result_end(str(symmetry_x))
 
-        print(spacing + "|" + (20 * " ") + "SYMMETRIE:" + (20 * " ") + "|" + result_end)
+        print(spacing + "|" + (14 * " ") + "SYMMETRIE ZUR Y-ACHSE ?" + (13 * " ") + "|" + result_end)
 
         print(gap_splitted)
 

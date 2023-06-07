@@ -186,7 +186,7 @@ class Quadratic_Func:
                                 function_type = "quad",
                                 derivative = Quadratic_Func.format_back(self.derivative),
                                 zeros_quad = self.zeropoints,
-                                symmetry_x = self.symmetry_y_axis,
+                                symmetry_y = self.symmetry_y_axis,
                                 extremum = self.extremum
                                 )
 
