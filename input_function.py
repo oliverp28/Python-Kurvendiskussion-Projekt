@@ -72,7 +72,7 @@ class Input_Function:
             raise ValueError("Invalid input. Quadratic functions should have at most two 'x' terms")
 
         if any(symbol.isdigit() for symbol in function):
-            raise ValueError("Invalid input. Symbol numbers are not allowed. Please use the correct format.")
+            raise ValueError("Invalid input. Symbol numbers are not allowed. Please use the correct format")
 
         if "x^2" not in function:
             raise ValueError("Invalid input. Quadratic functions should contain the term 'x^2'")
