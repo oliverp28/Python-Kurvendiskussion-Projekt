@@ -3,13 +3,13 @@ import pytest
 from quadratic import Quadratic_Func
 
 
-G1 = "1x**2"  # touchpoint
-G2 = "1x**2, 2x, -3"  # 2 intersections
-G3 = "1x**2, 5"  # no intersection
-G4 = "3x**2, 4x"
+G1 = "1x**2"  # touchpoint, symmetrical to y-axis
+G2 = "1x**2, 2x, -3"  # 2 intersections, not symmetrical
+G3 = "1x**2, 5"  # no intersection, symmetrical
+G4 = "3x**2, 4x" # not symmetrical
 G5 = (1, 2, -3)
 G6 = "1x**2, 2x, 3, 4"  # to much entries -> should raise an error
-G7 = "-1x**2"
+G7 = "-1x**2" # symmetrical
 
 NR1 = 1.0
 NR2 = 2.0
@@ -135,3 +135,29 @@ def test_zeropoints_with_no_intersection():
 def test_y_intercept():
     """testing the y_intercept function"""
     assert g2_as_func.y_intercept == -3.0
+
+def test_symmetry():
+    """testing if the function is symmetrical to the y axis"""
+    assert g1_as_func.symmetry_y_axis is True
+    assert g2_as_func.symmetry_y_axis is False
+    assert g3_as_func.symmetry_y_axis is True
+
+
+def test_derivative():
+    """testing if the derivative of the quadratic function is right"""
+    assert g1_as_func.derivative == (2.0, 0.0)
+    assert g2_as_func.derivative == (2.0, 2.0)
+    assert g3_as_func.derivative == (2.0, 0.0)
+    assert g4_as_func.derivative == (6.0, 4.0)
+    assert g5_as_func.derivative == (2.0, 2.0)
+
+def test_extremum():
+    """testing if the extremum of the function is right"""
+    assert g1_as_func.extremum == (0.0, 0.0)
+    assert g2_as_func.extremum == (-1.0, -4.0)
+    assert g3_as_func.extremum == (0.0, 5.0)
+
+def test_output():
+    """testing the if the output for the output class is fine"""
+    assert Quadratic_Func.format_back(g1_as_func) == '1.0x^2'
+    assert Quadratic_Func.format_back(g1_as_func.derivative) == '2.0x'
