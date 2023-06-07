@@ -44,7 +44,7 @@ class Quadratic_Func:
                     ):  # if it is no string, it can't hold a x**2 in it
                         entry_list[index] = entry_list[index].replace("x**2", "")
                         entry_list[index] = entry_list[index].replace("x^2", "")
-                    if entry == "":  # when the entry is empty after the replacement,
+                    if entry_list[index] == "":  # when the entry is empty after the replacement,
                         # it will replace it with one, because x**2 == 1x**2
                         entry_list[index] = 1.0
 
@@ -54,7 +54,7 @@ class Quadratic_Func:
                     ):  # if it is no string, it can't hold a x in it
                         if "x" in entry:
                             entry_list[index] = entry.replace("x", "")
-                            if entry == "":  # same as above x == 1x
+                            if entry_list[index] == "":  # same as above x == 1x
                                 entry_list[index] = 1.0
                             continue
                         if (
@@ -85,6 +85,7 @@ class Quadratic_Func:
         self._a_part = self._func[0]  # a (ax**2, bx, c)
         self._b_part = self._func[1]  # b
         self._c_part = self._func[2]  # c
+        self.output()
 
     @property
     def y_intercept(self):
@@ -120,7 +121,6 @@ class Quadratic_Func:
             self._a_part * (x_extremum**2) + self._b_part * x_extremum + self._c_part
         )
         # inserts x coordinate for the y coordinate
-        print(x_extremum, y_extremum)
         return x_extremum, y_extremum
 
     @property
@@ -183,8 +183,8 @@ class Quadratic_Func:
 
     def output(self):
         Curve_Discussion_Output(function = Quadratic_Func.format_back(self),
-                                function_type = "quadratic",
-                                derivative = Quadratic_Func(self.derivative),
+                                function_type = "quad",
+                                derivative = Quadratic_Func.format_back(self.derivative),
                                 zeros_quad = self.zeropoints,
                                 symmetry_x = self.symmetry_y_axis,
                                 extremum = self.extremum

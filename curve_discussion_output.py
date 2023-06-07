@@ -48,7 +48,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
         self.create_table_header(spacing, max_len, table_top_bottom, table_split, function) # Tabellenkopf erstellen und ausgeben
 
         if function_type == "quad":
-            self.fill_table_quad(spacing, table_split, table_top_bottom) # Tabelle für quadratische Funktion erstellen
+            self.fill_table_quad(spacing, table_split, table_top_bottom, derivative, zeros_quad, symmetry_x, extremum) # Tabelle für quadratische Funktion erstellen
         else:
             self.fill_table_lin(spacing, table_split, table_top_bottom, derivative, zero_lin, symmetry_x, symmetry_origin, monotonicity) # Tabelle für lineare Funktion erstellen
 
@@ -230,7 +230,11 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
     def fill_table_quad(self,
                         spacing,
                         table_split,
-                        table_top_bottom):
+                        table_top_bottom,
+                        derivative,
+                        zeros_quad,
+                        symmetry_x,
+                        extremum):
 
         """
             Gibt die gefüllte Tabelle mit den Ergebnissen der Kurvendiskussion (quadratische Funktion) aus.
@@ -258,43 +262,49 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
         print(table_split)
 
         print(gap_splitted)
+
+        result_end = self.result_end(derivative)
+
         print(spacing + "|" + (16 * " ") + "ABLEITUNG / f´(x):" + (16 * " ") + "|" + result_end)
+
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
+
+        if zeros_quad == None:
+            zeros_quad = "Keine Nullstellen vorhanden"
+
+        result_end = self.result_end(str(zeros_quad))
+
         print(spacing + "|" + (18 * " ") + "NULLSTELLE(N):" + (18 * " ") + "|" + result_end)
+
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
+
+        if symmetry_x is True:
+            symmetry_x = "JA"
+        else:
+            symmetry_x = "NEIN"
+
+        result_end = self.result_end(str(symmetry_x))
+
         print(spacing + "|" + (20 * " ") + "SYMMETRIE:" + (20 * " ") + "|" + result_end)
+
         print(gap_splitted)
 
         print(table_split)
 
         print(gap_splitted)
-        print(spacing + "|" + (18 * " ") + "EXTREMSTELLEN:" + (18 * " ") + "|" + result_end)
-        print(gap_splitted)
 
-        print(table_split)
+        result_end = self.result_end(str(extremum))
 
-        print(gap_splitted)
-        print(spacing + "|" + (21 * " ") + "KRÜMMUNG:" + (20 * " ") + "|" + result_end)
-        print(gap_splitted)
+        print(spacing + "|" + (15 * " ") + "EXTREMSTELLE (X, Y):" + (15 * " ") + "|" + result_end)
 
-        print(table_split)
-
-        print(gap_splitted)
-        print(spacing + "|" + (20 * " ") + "MONOTONIE:" + (20 * " ") + "|" + result_end)
-        print(gap_splitted)
-
-        print(table_split)
-
-        print(gap_splitted)
-        print(spacing + "|" + (18 * " ") + "GRENZVERHALTEN:" + (17 * " ") + "|" + result_end)
         print(gap_splitted)
 
         print(table_top_bottom)
