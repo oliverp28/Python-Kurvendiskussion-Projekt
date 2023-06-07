@@ -187,12 +187,12 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
 
         print(gap_splitted)
 
-        if symmetry_y is True:
-            symmetry_y = "JA"
+        if symmetry_x is True:
+            symmetry_x = "JA"
         else:
-            symmetry_y = "NEIN"
+            symmetry_x = "NEIN"
 
-        result_end = self.result_end(symmetry_y)
+        result_end = self.result_end(symmetry_x)
 
         print(spacing+"|" + (14 * " ") + "SYMMETRIE ZUR X-ACHSE ?" + (13 * " ") + "|" + result_end)
 
@@ -233,7 +233,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
                         table_top_bottom,
                         derivative,
                         zeros_quad,
-                        symmetry_x,
+                        symmetry_y,
                         extremum):
 
         """
@@ -286,12 +286,12 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
 
         print(gap_splitted)
 
-        if symmetry_x is True:
-            symmetry_x = "JA"
+        if symmetry_y is True:
+            symmetry_y = "JA"
         else:
-            symmetry_x = "NEIN"
+            symmetry_y = "NEIN"
 
-        result_end = self.result_end(str(symmetry_x))
+        result_end = self.result_end(str(symmetry_y))
 
         print(spacing + "|" + (14 * " ") + "SYMMETRIE ZUR Y-ACHSE ?" + (13 * " ") + "|" + result_end)
 

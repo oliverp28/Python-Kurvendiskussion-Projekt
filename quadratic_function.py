@@ -5,12 +5,15 @@ from curve_discussion_output import Curve_Discussion_Output
 class Quadratic_Func:
     """class that representates quadratic functions"""
 
-    def __init__(self, input_func, *, _format=True):
+    def __init__(self, function, *, _format=True):
         """Instanciate the input from the validation class
 
         Args:
-            input (sequenz in special form): quadratic function
+            function (sequenz in special form): quadratic function
         """
+
+        input_func = function
+
         entry_list = input_func
 
         if isinstance(entry_list, (tuple, list)):  # checking if formating is needed
