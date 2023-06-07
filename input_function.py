@@ -1,8 +1,8 @@
-from linear_function import Linear_Function
-from quadratic_function import Quadratic_Function
+import linear_function
+import quadratic_function
 
 class Input_Function:
-    def __init__(self, function):
+    def __init__(self):
         """
         Initialize Input_Function object.
 
@@ -12,8 +12,18 @@ class Input_Function:
         Raises:
             ValueError: If the input function is invalid.
         """
+
+        function = self.get_function()
         self.validate_input(function)  # Validate the input function
         self.which_function(function)  # Determine the type of function
+        self.validation()
+
+    def get_function(self):
+
+        function = input("Gib deine Funktion ein: f(x) = ")
+        print("Du hast folgende Funktion eingegeben:", function)
+
+        return function
 
     def validate_input(self, function):
         """
@@ -49,7 +59,7 @@ class Input_Function:
             raise ValueError("Invalid input. Linear functions should have only one 'x' term")
 
         if any(symbol.isdigit() for symbol in function):
-            raise ValueError("Invalid input. Symbol numbers are not allowed. Please use the correct format.)
+            raise ValueError("Invalid input. Symbol numbers are not allowed. Please use the correct format.")
 
         if "x" not in function:
             raise ValueError("Invalid input. Linear functions should contain the term 'x'")
@@ -94,37 +104,35 @@ class Input_Function:
             # If no function is specified, raise an error
             raise ValueError("Please specify a function")
 
-        if "," in function:
-            # If the input contains a comma, it will be replaced by a point
-            function = function.replace(",", ".")
+        #if "," in function:
+        #    # If the input contains a comma, it will be replaced by a point
+        #    function = function.replace(",", ".")
             
                              
         try:
-            if "x^2" Or "x**2" in function:
+            if "x^2" or "x**2" in function:
                 # If the input contains "x^2", it's a quadratic function
                 self.validate_quadratic_function(function)
-                Quadratic_Function(function.lower())  # Create a Quadratic_Function instance with lowercase x
+                quadratic_function.Quadratic_Func(function.lower())  # Create a Quadratic_Function instance with lowercase x
             elif "x" in function and "^" not in function:
                 # If the input contains "x" but doesn't have "^", it's a linear function
                 self.validate_linear_function(function)
-                Linear_Function(function.lower())  # Create a Linear_Function instance with lowercase x
+                linear_function.Linear_Func(function.lower())  # Create a Linear_Function instance with lowercase x
             else:
                 # If none of the conditions above are met, it's an invalid input for a function
                 raise ValueError("Invalid input. Please specify a valid function")
         except ValueError as e:
             print(e)
 
-def validation():
-    """
-    Validate the input function provided by the user.
-    """
-    try:
-        # Get the function from the user
-        function = input("f(x) = ")
+    def validation(self):
+        """
+        Validate the input function provided by the user.
+        """
+        try:
+            # Get the function from the user
+            function = input("f(x) = ")
 
-        # Create an instance of Input_Function to validate the input
-        input_func = Input_Function(function)
-    except ValueError as e:
-        print(e)
-
-validation()
+            # Create an instance of Input_Function to validate the input
+            input_func = Input_Function(function)
+        except ValueError as e:
+            print(e)
