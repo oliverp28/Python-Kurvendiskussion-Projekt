@@ -44,7 +44,7 @@ class Quadratic_Func:
                     ):  # if it is no string, it can't hold a x**2 in it
                         entry_list[index] = entry_list[index].replace("x**2", "")
                         entry_list[index] = entry_list[index].replace("x^2", "")
-                    if entry == "":  # when the entry is empty after the replacement,
+                    if entry_list[index] == "":  # when the entry is empty after the replacement,
                         # it will replace it with one, because x**2 == 1x**2
                         entry_list[index] = 1.0
 
@@ -54,7 +54,7 @@ class Quadratic_Func:
                     ):  # if it is no string, it can't hold a x in it
                         if "x" in entry:
                             entry_list[index] = entry.replace("x", "")
-                            if entry == "":  # same as above x == 1x
+                            if entry_list[index] == "":  # same as above x == 1x
                                 entry_list[index] = 1.0
                             continue
                         if (
