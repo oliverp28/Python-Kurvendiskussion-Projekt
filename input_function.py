@@ -95,11 +95,11 @@ class Input_Function:
             raise ValueError("Please specify a function")
 
         if "," in function:
-            # If the input contains a comma, it's an invalid input for decimal separator
+            # If the input contains a comma, it will be replaced by a point
             raise ValueError("Invalid input. Please enter the number with a dot as decimal separator")
 
         try:
-            if "x^2" in function:
+            if "x^2" Or "x**2" in function:
                 # If the input contains "x^2", it's a quadratic function
                 self.validate_quadratic_function(function)
                 Quadratic_Function(function.lower())  # Create a Quadratic_Function instance with lowercase x
