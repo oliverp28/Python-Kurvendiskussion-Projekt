@@ -2,63 +2,59 @@ from linear_function import Linear_Function
 from quadratic_function import Quadratic_Function
 
 class Input_Function:
-
     def __init__(self, function):
         """
-            get and validate input function
+        Get and validate input function
         """
-        def which_function(function):
-    # Remove whitespace from the input function
-    function = function.replace(" ", "")
+        self.validate_input(function)
+        self.which_function(function)
 
-    if function == "":
-        # If no function is specified, print an error message
-        print("Please specify a function")
+    def validate_input(self, function):
+        # Check for invalid cases
+        invalid_cases = ["/x", "x/", "*x", "x*"]
+        for case in invalid_cases:
+            if case in function:
+                raise ValueError("Invalid input. Please use the correct format: 1/5x; 5/2x; 25x")
 
-    elif "," in function:
-        # If the input contains a comma, it's an invalid input for decimal separator
-        print("Invalid input. Please enter the number with a dot as decimal separator")
+    def which_function(self, function):
+        # Remove whitespace from the input function
+        function = function.replace(" ", "")
 
-    elif "x^2" in function:
-        # If the input contains "x^2", it's a quadratic function
-        return "quadratic"
+        if function == "":
+            # If no function is specified, raise an error
+            raise ValueError("Please specify a function")
 
-    elif "x" in function:
-        if "^" not in function:
-            # If the input contains "x" but doesn't have "^", it's a linear function
-            return "linear"
+        if "," in function:
+            # If the input contains a comma, it's an invalid input for decimal separator
+            raise ValueError("Invalid input. Please enter the number with a dot as decimal separator")
 
-    else:
-        # If none of the conditions above are met, it's an invalid input for a function
-        return "This input is incorrect. Please specify a valid function"
+        if any(symbol.isdigit() for symbol in function):
+            # If the input contains a symbol number, it's an invalid input
+            raise ValueError("Invalid input. Symbol numbers are not allowed. Please use the correct format: 1/5x; 5/2x; 25x")
+
+        try:
+            if "x^2" in function:
+                # If the input contains "x^2", it's a quadratic function
+                Quadratic_Function()
+            elif "x" in function and "^" not in function:
+                # If the input contains "x" but doesn't have "^", it's a linear function
+                Linear_Function()
+            else:
+                # If none of the conditions above are met, it's an invalid input for a function
+                raise ValueError("This input is incorrect. Please specify a valid function")
+        except ValueError as e:
+            print(e)
 
 
 def validation():
-    # Get the function from the user
-    function = input("f(x) = ")
+    try:
+        # Get the function from the user
+        function = input("f(x) = ")
 
-    # Determine the type of function using the which_function function
-    function_type = which_function(function)
-
-    if function_type == "quadratic":
-        # Call the Quadratic Func
-        Quadratic_Func.__init__()
-
-    elif function_type == "linear":
-        # Call the Linear_Func() function or class to handle linear functions
-        Linear_Func.__init__()
-
-    else:
-        # If the function type is neither quadratic nor linear, print an error message
-        print("This input is incorrect. Please specify a valid function")
+        # Create an instance of Input_Function to validate the input
+        input_func = Input_Function(function)
+    except ValueError as e:
+        print(e)
 
 
 validation()
-        
-        
-        self.get_function()
-
-    def get_function(self):
-
-        function = input("Gib deine Funktion ein: ")
-        print("Du hast folgende Funktion eingegeben:", function)
