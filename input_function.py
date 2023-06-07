@@ -96,8 +96,9 @@ class Input_Function:
 
         if "," in function:
             # If the input contains a comma, it will be replaced by a point
-            raise ValueError("Invalid input. Please enter the number with a dot as decimal separator")
-
+            function = function.replace(",", ".")
+            
+                             
         try:
             if "x^2" Or "x**2" in function:
                 # If the input contains "x^2", it's a quadratic function
