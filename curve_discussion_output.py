@@ -273,7 +273,7 @@ class Curve_Discussion_Output: # Klasse für die Ausgabe der Kurvendiskussion
 
         print(gap_splitted)
 
-        if zeros_quad == None:
+        if zeros_quad is None:
             zeros_quad = "Keine Nullstellen vorhanden"
 
         result_end = self.result_end(str(zeros_quad))

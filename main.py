@@ -1,4 +1,4 @@
-from input_function import Input_Function
+import input_function
 
 
 def main():
@@ -6,6 +6,6 @@ def main():
         start CurveDiscussion
     """
 
-    Input_Function()
+    input_function.Input_Function()
 
 if __name__ == "__main__": main()
