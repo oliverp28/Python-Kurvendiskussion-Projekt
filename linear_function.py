@@ -1,4 +1,6 @@
+""" Import der Klasse curve_discussion_output. """
 import curve_discussion_output
+
 
 class Linear_Func:
     """
@@ -35,13 +37,15 @@ class Linear_Func:
             function
         )  # function, als Verwendung in Form einer Klassenvariable
 
-        curve_discussion_output.Curve_Discussion_Output(function=function,
-                                                        function_type="lin",
-                                                        derivative=self.calculate_derivative(),
-                                                        zero_lin=self.calculate_zeros(),
-                                                        symmetry_x=self.calculate_symmetry_x(),
-                                                        symmetry_origin=self.calculate_point_symmetry_origin(),
-                                                        monotonicity=self.calculate_monotonicity())
+        curve_discussion_output.Curve_Discussion_Output(
+            function=function,
+            function_type="lin",
+            derivative=self.calculate_derivative(),
+            zero_lin=self.calculate_zeros(),
+            symmetry_x=self.calculate_symmetry_x(),
+            symmetry_origin=self.calculate_point_symmetry_origin(),
+            monotonicity=self.calculate_monotonicity(),
+        )
 
     def validate_function(self, function):
         """
@@ -76,41 +80,41 @@ class Linear_Func:
             replace_a: Kontroll-Variable zur Analyse von seltenen Fällen
         """
         function = self.function
-        a = ""  # Instanziierung von Variablen
-        b = ""
+        a_variable = ""  # Instanziierung von Variablen
+        b_variable = ""
         replace_x = ""  # Kontrollvariable für Funktionen wie f(x) = x
         found_x = False
 
         for char in function:  # Untersuche ob x enhalten ist
             if char == "x":
                 found_x = True  # Ist x enhalten wird der Teil bis einschließlich x in a geladen
-                a += char
+                a_variable += char
                 break
             else:
-                a += char
+                a_variable += char
 
         if found_x:
-            b = function[
-                len(a) :
+            b_variable = function[
+                len(a_variable) :
             ]  # Anhand der Länge von a wird, alles um die Stelle 1 nach a in b geladen
         else:
-            b = function  # ist kein x vorhanden wird alles in b geladen
-            a = ""
+            b_variable = function  # ist kein x vorhanden wird alles in b geladen
+            a_variable = ""
 
         if (
-            "x" in a
+            "x" in a_variable
         ):  # x wird in a entfernt, damit mathematische Berechnungen möglich sind
-            a = a.replace("x", "")
+            a_variable = a_variable.replace("x", "")
             replace_x = True  # diese Kontrollvariable wird bei Fallunterscheidungen miteinbezogen
         else:
             replace_x = False
 
         if (
-            a == "+" or a == "-"
+            a_variable == "+" or a_variable == "-"
         ):  # ist ein x und wird für den Fall +x oder -x eine 1 für x eingesetzt
-            a += "1"
+            a_variable += "1"
 
-        return a, b, replace_x
+        return a_variable, b_variable, replace_x
 
     def calculate_derivative(self):
         """
@@ -122,26 +126,26 @@ class Linear_Func:
         Returns:
             derivative: int; float; string (Datentyp abhängig von der linearen Funktion)
         """
-        a, _, replace_x = self.parse_function()
+        a_variable, _, replace_x = self.parse_function()
 
         if (
-            len(a) == 0 and replace_x is False
+            len(a_variable) == 0 and replace_x is False
         ):  # Test für den Fall dass keine Steigung vorhanden ist wie f(x) = 5
             derivative = "Keine Ableitung möglich."
             return derivative
 
-        elif (
-            len(a) == 0 and replace_x is True
+        if (
+            len(a_variable) == 0 and replace_x is True
         ):  # Test für den Fall dass die Funktion f(x) = x lautet
             derivative = 1
             return derivative
 
-        a = eval(a)  # Umrechnung von +0 oder -0 in 0
+        a_variable = eval(a_variable)  # Umrechnung von +0 oder -0 in 0
 
-        if a == 0:  # Test für f(x) = 0x + 2
+        if a_variable == 0:  # Test für f(x) = 0x + 2
             derivative = "Keine Ableitung möglich."
         else:
-            derivative = a
+            derivative = a_variable
 
         return derivative
 
@@ -155,31 +159,31 @@ class Linear_Func:
         Returns:
             zero: int; float; string (Datentyp abhängig von der linearen Funktion)
         """
-        a, b, replace_x = self.parse_function()
+        a_variable, b_variable, replace_x = self.parse_function()
 
-        if len(a) == 0:  # Test für f(x) = x
-            if replace_x is True and eval(b) == 0:
+        if len(a_variable) == 0:  # Test für f(x) = x
+            if replace_x is True and eval(b_variable) == 0:
                 zero = 0
                 return zero
 
-            elif replace_x is True and eval(b) != 0:  # Test für f(x) = x + 1
-                zero = -eval(b) / 1  # Berechnung der Nullstelle mit a = 1
+            if replace_x is True and eval(b_variable) != 0:  # Test für f(x) = x + 1
+                zero = -eval(b_variable) / 1  # Berechnung der Nullstelle mit a = 1
                 return zero
 
             elif replace_x is False:  # Test für den Fall von keinem a
                 zero = "Keine Nullstelle vorhanden."
                 return zero
 
-        if eval(a) == 0:  # Test für den Fall f(x) = -0x + 5
+        if eval(a_variable) == 0:  # Test für den Fall f(x) = -0x + 5
             zero = "Keine Nullstelle vorhanden."
             return zero
 
-        if replace_x is True and b == "0":  # Test für den Fall f(x) = 5x
+        if replace_x is True and b_variable == "0":  # Test für den Fall f(x) = 5x
             zero = 0
             return zero
 
-        if len(a) >= 1:  # Test für den Fall f(x) = 5x + 10
-            zero = -eval(b) / eval(a)
+        if len(a_variable) >= 1:  # Test für den Fall f(x) = 5x + 10
+            zero = -eval(b_variable) / eval(a_variable)
             return zero
 
     def calculate_symmetry_x(self):
@@ -188,17 +192,20 @@ class Linear_Func:
         Feststellung der Symmetrie zur X-Achse
 
         Args:
-            Verwendung der Bestandteile der Funktion als String in a, b und replace_a
+            Verwendung der Bestandteile der
+            Funktion als String in a, b und replace_a
 
         Returns:
             symmetrie_x: bool
         """
 
-        a, b, replace_x = self.parse_function()
+        a_variable, b_variable, replace_x = self.parse_function()
 
-        if a == "" or eval(a) == 0 and eval(b) != 0:  # Test für a = 0 und b != 0
+        if (
+            a_variable == "" or eval(a_variable) == 0 and eval(b_variable) != 0
+        ):  # Test für a = 0 und b != 0
             symmetry_x = True
-            if a == "" and replace_x is True:  # Test für a != 0x
+            if a_variable == "" and replace_x is True:  # Test für a != 0x
                 symmetry_x = False
 
         else:  # Test sobald a != 0x ist
@@ -218,9 +225,9 @@ class Linear_Func:
             point_symmetrie_origin: bool
         """
 
-        _, b, _ = self.parse_function()
-        b = eval(b)
-        if b == 0:  # Test ob b 0 entspricht
+        _, b_variable, _ = self.parse_function()
+        b_variable = eval(b_variable)
+        if b_variable == 0:  # Test ob b 0 entspricht
             point_symmetry_origin = True
         else:
             point_symmetry_origin = (
@@ -240,9 +247,11 @@ class Linear_Func:
         Returns:
             monotonicity: string
         """
-        a, _, replace_x = self.parse_function()
+        a_variable, _, replace_x = self.parse_function()
 
-        if a == "":  # x wurde abgeschnitten aber der Fall f(x) = x wird hier behandelt
+        if (
+            a_variable == ""
+        ):  # x wurde abgeschnitten aber der Fall f(x) = x wird hier behandelt
             if replace_x is True:
                 monotonicity = "steigend"
             else:
@@ -250,10 +259,12 @@ class Linear_Func:
                     "konstant"  # Test des Falls dass keine Steigung in a vorhanden ist
                 )
         else:
-            a = eval(a)  # Test ob a a = 0 oder größer oder kleiner ist
-            if a > 0:
+            a_variable = eval(
+                a_variable
+            )  # Test ob a a = 0 oder größer oder kleiner ist
+            if a_variable > 0:
                 monotonicity = "steigend"
-            elif a < 0:
+            elif a_variable < 0:
                 monotonicity = "fallend"
             else:
                 monotonicity = "konstant"
