@@ -28,7 +28,7 @@ class Quadratic_Func:
             if isinstance(
                 input_func, str
             ):  # if the input is a string, it will split it into a list
-                entry_list = input_func.split(", ")
+                entry_list = input_func.split(",")
 
             if len(entry_list) > 3:
                 raise RuntimeError(
@@ -42,7 +42,8 @@ class Quadratic_Func:
                     if isinstance(
                         entry, str
                     ):  # if it is no string, it can't hold a x**2 in it
-                        entry_list[index] = entry.replace("x**2", "")
+                        entry_list[index] = entry_list[index].replace("x**2", "")
+                        entry_list[index] = entry_list[index].replace("x^2", "")
                     if entry == "":  # when the entry is empty after the replacement,
                         # it will replace it with one, because x**2 == 1x**2
                         entry_list[index] = 1.0
@@ -81,6 +82,9 @@ class Quadratic_Func:
             except ValueError:
                 raise RuntimeError("faulty input")
         self._func = tuple(entry_list)
+        self._a_part = self._func[0]  # a (ax**2, bx, c)
+        self._b_part = self._func[1]  # b
+        self._c_part = self._func[2]  # c
 
     @property
     def y_intercept(self):
@@ -90,19 +94,39 @@ class Quadratic_Func:
     @property
     def zeropoints(self):
         """function to searches all zeropoints of a quadratic function"""
-        a_part = self._func[0]  # a (ax**2, bx, c)
-        b_part = self._func[1]  # b
-        c_part = self._func[2]  # c
-
-        discriminant = b_part**2 - 4 * a_part * c_part
+        discriminant = self._b_part**2 - 4 * self._a_part * self._c_part
         if (discriminant) < 0:
             return None  # if the discriminant is negative, there are no zeropoints
 
-        value1 = (-b_part + (discriminant) ** 0.5) / (2 * a_part)
+        value1 = (-self._b_part + (discriminant) ** 0.5) / (2 * self._a_part)
         if (discriminant) == 0:  # if the discriminant is 0, there is only one zeropoint
-            return value1 # tuple for the output class
-        value2 = (-b_part - (discriminant) ** 0.5) / (2 * a_part)
+            return value1  # tuple for the output class
+        value2 = (-self._b_part - (discriminant) ** 0.5) / (2 * self._a_part)
         return value1, value2
+
+    @property
+    def derivative(self):  # derivative is (2ax**1, b) c falls out
+        """function to get the derivative of the quadratic function"""
+        a_derivative = self._a_part * 2
+        b_derivative = self._b_part
+        return a_derivative, b_derivative
+
+    @property
+    def extremum(self):
+        """function to get the extremum of the quadratic function"""
+        a_temp, b_temp = self.derivative
+        x_extremum = -b_temp / a_temp  # x point of the extremum
+        y_extremum = (
+            self._a_part * (x_extremum**2) + self._b_part * x_extremum + self._c_part
+        )
+        # inserts x coordinate for the y coordinate
+        print(x_extremum, y_extremum)
+        return x_extremum, y_extremum
+
+    @property
+    def symmetry_y_axis(self):
+        """If True function is symmetrical to y-axis. b is for shift in x-dir, 0 means no shift"""
+        return True if self._b_part == 0 else False
 
     def __repr__(self):
         return "Quadratic_func(" + repr(self._func) + ")"
@@ -116,7 +140,7 @@ class Quadratic_Func:
                 if x_entry != y_entry:
                     return False
             return True
-        return False
+        return NotImplemented
 
     def __contains__(self, value):
         for entry in self._func:
@@ -156,3 +180,46 @@ class Quadratic_Func:
         return NotImplemented
 
     __rsub__ = __sub__
+
+    def output(self):
+        Curve_Discussion_Output(function = Quadratic_Func.format_back(self),
+                                function_type = "quadratic",
+                                derivative = Quadratic_Func(self.derivative),
+                                zeros_quad = self.zeropoints,
+                                symmetry_x = self.symmetry_y_axis,
+                                extremum = self.extremum
+                                )
+
+    @classmethod
+    def format_back(cls, func):
+        output_string = ""
+        if isinstance(func, Quadratic_Func): # checking how often we have to loop
+            stopping_by = -4  # quadratic functions has a length of 3
+            exporting_func = func._func
+        if not isinstance(func, Quadratic_Func):
+            stopping_by = -3  # derivative has a length of 2
+            exporting_func = func
+
+        for index in range(-1, stopping_by, -1):
+            if index == -1: # starting with the c from the back
+                if exporting_func[index] > 0: 
+                    output_string = " + " + str(abs(exporting_func[-1]))
+                elif exporting_func[index] < 0:
+                    output_string = " - " + str(abs(exporting_func[-1]))
+                else: # if the c is 0 we skip it
+                    continue
+
+            if index == -2: # put the b with the x in front of the c
+                temporary_string = str(abs(exporting_func[-2])) + "x"
+                if len(exporting_func) == 3:
+                    if exporting_func[index] > 0:
+                        temporary_string = " + " + temporary_string
+                    elif exporting_func[index] < 0:
+                        temporary_string = " - " + temporary_string
+                    else: # if the b is 0 then it can be ignored 
+                        temporary_string = ""
+                output_string = temporary_string + output_string
+
+            if index == -3: # adding the a with x^2 at the front
+                output_string = str(exporting_func[index]) + "x^2" + output_string
+        return output_string
