@@ -52,6 +52,10 @@ Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba, David Klumpp
       -linear_function.py
       -quadratic_function.py
       -curve_discussion_output.py
+      
+     test_files:
+       -test_lin_func.py
+       -test_quad_func.py
 
 grober Programmablauf:
   main -> input_function -> linear_function | quadratic_function -> curve_discussion_output
