@@ -4,38 +4,36 @@ import curve_discussion_output
 
 class Linear_Func:
     """
-    Performs a curve discussion of a linear function.
+        Performs a curve discussion of a linear function.
 
-    Components:
-        - Derivative
-        - Zeros to the x-axis
-        - Symmetry to the x-axis
-        - Symmetry to the origin
-        - Monotonicity
+        Components:
+            - Derivative
+            - Zeros to the x-axis
+            - Symmetry to the x-axis
+            - Symmetry to the origin
+            - Monotonicity
     """
 
-    def __init__(self, function):
-
+    def __init__(self,
+                 function):
         """
-        arg:
-            -> The input is a string representing a linear function
-            -> Function format: a * x + b
-            --> a represents the coefficient of x in the function
-            --> b represents the constant term (anything after x)
+            Args:
+                -> The input is a string representing a linear function
+                -> Function format: a * x + b
+                --> a represents the coefficient of x in the function
+                --> b represents the constant term (anything after x)
 
-            -> Allowed variations: + or - ax + or - b
-                --> The * between a and x can be omitted, but it is not required
-                --> Spacing rules do not matter
-            -> Not allowed inputs:
-                --> x/a
-                --> a/x
-                --> ax / b
-                --> ax * b
+                -> Allowed variations: + or - ax + or - b
+                    --> The * between a and x can be omitted, but it is not required
+                    --> Spacing rules do not matter
+                -> Not allowed inputs:
+                    --> x/a
+                    --> a/x
+                    --> ax / b
+                    --> ax * b
         """
 
-        self.function = self.validate_function(
-            function
-        )  # function, used as a class variable
+        self.function = self.validate_function(function)  # function, used as a class variable
 
         curve_discussion_output.Curve_Discussion_Output(
             function=function,
@@ -47,14 +45,15 @@ class Linear_Func:
             monotonicity=self.calculate_monotonicity(),
         )
 
-    def validate_function(self, function):
+    def validate_function(self,
+                          function):
         """
-        Validation of the entered function
+            Validation of the entered function
 
-        args:
-            function (str): The string representing the linear function
-        returns:
-            str: The validated function
+            Args:
+                function (str): The string representing the linear function
+            returns:
+                str: The validated function
         """
         function = function.replace(" ", "")  # removing spaces
         function = function.replace(",", ".")  # standardizing , to .
@@ -68,15 +67,15 @@ class Linear_Func:
 
     def parse_function(self):
         """
-        Analyzing the function into its individual components
+            Analyzing the function into its individual components
 
-        args:
-            function (str): The string representing the linear function
+            Args:
+                function (str): The string representing the linear function
 
-        returns:
-            a: Function part up to and including x
-            b: Function part from x to the end
-            replace_a: Control variable for analyzing rare cases
+            returns:
+                a: Function part up to and including x
+                b: Function part from x to the end
+                replace_a: Control variable for analyzing rare cases
         """
         function = self.function
         a_variable = ""  # Variable instantiation
@@ -119,12 +118,12 @@ class Linear_Func:
 
     def calculate_derivative(self):
         """
-        Calculation of the derivative
+            Calculation of the derivative
 
-        args:
-            Usage of the components of the function as strings: a, b, and replace_a
-        returns:
-            derivative: int; float; string (data type depends on the linear function)
+            Args:
+                Usage of the components of the function as strings: a, b, and replace_a
+            returns:
+                derivative: int; float; string (data type depends on the linear function)
         """
         a_variable, _, replace_x = self.parse_function()
 
@@ -151,12 +150,12 @@ class Linear_Func:
 
     def calculate_zeros(self):
         """
-        Calculation of the zeros.
+            Calculation of the zeros.
 
-        args:
-            Usage of the components of the function as strings: a, b, and replace_a
-        returns:
-            zero: int; float; string (data type depends on the linear function)
+            Args:
+                Usage of the components of the function as strings: a, b, and replace_a
+            returns:
+                zero: int; float; string (data type depends on the linear function)
         """
         a_variable, b_variable, replace_x = self.parse_function()
 
@@ -188,13 +187,13 @@ class Linear_Func:
     def calculate_symmetry_x(self):
 
         """
-        Determining symmetry to the x-axis
+            Determining symmetry to the x-axis
 
-        args:
-            Using the components of the function
-            as strings: a, b, and replace_a
-        returns:
-            symmetrie_x: bool
+            Args:
+                Using the components of the function
+                as strings: a, b, and replace_a
+            returns:
+                symmetrie_x: bool
         """
 
         a_variable, b_variable, replace_x = self.parse_function()
@@ -212,14 +211,13 @@ class Linear_Func:
         return symmetry_x
 
     def calculate_point_symmetry_origin(self):
-
         """
-        Determining symmetry to the origin
+            Determining symmetry to the origin
 
-        args:
-            Using the components of the function as a string in variable b
-        returns:
-            point_symmetrie_origin: bool
+            Args:
+                Using the components of the function as a string in variable b
+            returns:
+                point_symmetrie_origin: bool
         """
 
         _, b_variable, _ = self.parse_function()
@@ -234,14 +232,13 @@ class Linear_Func:
         return point_symmetry_origin
 
     def calculate_monotonicity(self):
-
         """
-        Determining the monotonicity
+            Determining the monotonicity
 
-        args:
-            Using the components of the function as a string in variable b
-        returns:
-            monotonicity: string
+            Args:
+                Using the components of the function as a string in variable b
+            returns:
+                monotonicity: string
         """
         a_variable, _, replace_x = self.parse_function()
 

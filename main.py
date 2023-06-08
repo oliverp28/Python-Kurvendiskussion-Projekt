@@ -1,13 +1,7 @@
-"""
-Startet die Kurvendiskussion
-"""
+"""Startet die Kurvendiskussion"""
 import input_function
 
-
 def main():
-    """
-        start CurveDiscussion
-    """
 
     input_function.Input_Function()
 

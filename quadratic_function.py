@@ -5,11 +5,15 @@ from curve_discussion_output import Curve_Discussion_Output
 class Quadratic_Func:
     """class that representates quadratic functions"""
 
-    def __init__(self, function, *, _format=True):
-        """Instanciate the input from the validation class
+    def __init__(self,
+                 function,
+                 *,
+                 _format=True):
+        """
+            Instanciate the input from the validation class
 
-        Args:
-            function (sequenz in special form): quadratic function
+            Args:
+                function (sequenz in special form): quadratic function
         """
 
         input_func = function
@@ -35,7 +39,7 @@ class Quadratic_Func:
 
             if len(entry_list) > 3:
                 raise RuntimeError(
-                    "Too much values, quadratic functions only take 3 inputs (ax**2, bx, c)"
+                    "Zu viele Werte. Quadratische Funktionen akzeptieren nur 3 Eingaben (ax**2, bx, c)."
                 )
 
             for index, entry in enumerate(
@@ -83,7 +87,7 @@ class Quadratic_Func:
                     if not isinstance(func_entry, float):
                         entry_list[i] = float(func_entry)
             except ValueError:
-                raise RuntimeError("faulty input")
+                raise RuntimeError("Fehlerhafte Eingabe.")
         self._func = tuple(entry_list)
         self._a_part = self._func[0]  # a (ax**2, bx, c)
         self._b_part = self._func[1]  # b
@@ -137,7 +141,8 @@ class Quadratic_Func:
     def __iter__(self):
         return iter(self._func)
 
-    def __eq__(self, other):
+    def __eq__(self,
+               other):
         if isinstance(other, Quadratic_Func):
             for x_entry, y_entry in zip(self._func, other._func):
                 if x_entry != y_entry:
@@ -145,7 +150,8 @@ class Quadratic_Func:
             return True
         return NotImplemented
 
-    def __contains__(self, value):
+    def __contains__(self,
+                     value):
         for entry in self._func:
             if abs(entry - value) < 0.000_000_1:
                 return True
@@ -158,7 +164,8 @@ class Quadratic_Func:
         temp = [-x for x in self._func]
         return Quadratic_Func(temp, _format=False)
 
-    def __add__(self, other):
+    def __add__(self,
+                other):
         if isinstance(other, Quadratic_Func):  # add with 2 quadratic functions
             temp = [x + y for x, y in zip(self._func, other._func)]
             return Quadratic_Func(temp, _format=False)
@@ -170,7 +177,8 @@ class Quadratic_Func:
 
     __radd__ = __add__
 
-    def __sub__(self, other):
+    def __sub__(self,
+                other):
         if isinstance(other, Quadratic_Func):  # subtracion with 2 quadratic functions
             temp = [x - y for x, y in zip(self._func, other._func)]
             return Quadratic_Func(temp, _format=False)
@@ -194,7 +202,8 @@ class Quadratic_Func:
                                 )
 
     @classmethod
-    def format_back(cls, func):
+    def format_back(cls,
+                    func):
         output_string = ""
         if isinstance(func, Quadratic_Func): # checking how often we have to loop
             stopping_by = -4  # quadratic functions has a length of 3
