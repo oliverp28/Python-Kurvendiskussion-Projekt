@@ -54,6 +54,8 @@ class Quadratic_Func:
                     if entry_list[index] == "":  # when the entry is empty after the replacement,
                         # it will replace it with one, because x**2 == 1x**2
                         entry_list[index] = 1.0
+                    if entry_list[index] == "-":
+                        entry_list[index] = -1.0
 
                 elif index == 1:  # replace the x
                     if isinstance(
@@ -63,6 +65,8 @@ class Quadratic_Func:
                             entry_list[index] = entry.replace("x", "")
                             if entry_list[index] == "":  # same as above x == 1x
                                 entry_list[index] = 1.0
+                            if entry_list[index] == "-":
+                                entry_list[index] = -1.0
                             continue
                         if (
                             len(entry_list) == 2
@@ -193,7 +197,7 @@ class Quadratic_Func:
     __rsub__ = __sub__
 
     def output(self):
-        Curve_Discussion_Output(function = Quadratic_Func.format_back(self),
+        Curve_Discussion_Output(function = Quadratic_Func.format_back(self).replace("- -", "- "),
                                 function_type = "quad",
                                 derivative = Quadratic_Func.format_back(self.derivative),
                                 zeros_quad = self.zeropoints,
@@ -222,7 +226,8 @@ class Quadratic_Func:
                     continue
 
             if index == -2: # put the b with the x in front of the c
-                temporary_string = str(abs(exporting_func[-2])) + "x"
+                temporary_string = str(exporting_func[-2]) + "x"
+                print(temporary_string)
                 if len(exporting_func) == 3:
                     if exporting_func[index] > 0:
                         temporary_string = " + " + temporary_string
