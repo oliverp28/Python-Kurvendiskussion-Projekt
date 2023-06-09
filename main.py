@@ -1,7 +1,8 @@
-"""Startet die Kurvendiskussion"""
+""" Import of the class input_function """
 import input_function
 
 def main():
+    """ Starts the curve discussion. """
 
     input_function.Input_Function()
 

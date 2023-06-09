@@ -6,7 +6,7 @@ Als Eingabe dienen folgende Funktionen:
 
   -> lineare Funktionen
   -> quadratische Funktion
-  ... (mögliche Ergänzung bei fehlender Komplexität)
+  
 
 
 -> Die Eingabe wird durch Input-Validation geprüft und in eine der vorgegebenen Funktions-Kategorien eingeordnet
@@ -29,7 +29,7 @@ Als Eingabe dienen folgende Funktionen:
       
     --> Die Ausgabe erfolgt in einer geordneten übersichtlichen Tabelle
 
-Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba, David Klumpp
+Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba und David Klumpp
 
 
     Optimierung kurz vor der Abgabe-----------------------
@@ -57,5 +57,5 @@ Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba, David Klumpp
        -test_lin_func.py
        -test_quad_func.py
 
-grober Programmablauf:
+Programmablauf:
   main -> input_function -> linear_function | quadratic_function -> curve_discussion_output

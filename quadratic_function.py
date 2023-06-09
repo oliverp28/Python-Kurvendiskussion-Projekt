@@ -197,6 +197,7 @@ class Quadratic_Func:
     __rsub__ = __sub__
 
     def output(self):
+        """ Formats the output. """
         Curve_Discussion_Output(function = Quadratic_Func.format_back(self).replace("- -", "- "),
                                 function_type = "quad",
                                 derivative = Quadratic_Func.format_back(self.derivative),
@@ -208,6 +209,7 @@ class Quadratic_Func:
     @classmethod
     def format_back(cls,
                     func):
+        """ Formats the output string. """
         output_string = ""
         if isinstance(func, Quadratic_Func): # checking how often we have to loop
             stopping_by = -4  # quadratic functions has a length of 3
@@ -218,7 +220,7 @@ class Quadratic_Func:
 
         for index in range(-1, stopping_by, -1):
             if index == -1: # starting with the c from the back
-                if exporting_func[index] > 0: 
+                if exporting_func[index] > 0:
                     output_string = " + " + str(abs(exporting_func[-1]))
                 elif exporting_func[index] < 0:
                     output_string = " - " + str(abs(exporting_func[-1]))
@@ -233,7 +235,7 @@ class Quadratic_Func:
                         temporary_string = " + " + temporary_string
                     elif exporting_func[index] < 0:
                         temporary_string = " - " + temporary_string
-                    else: # if the b is 0 then it can be ignored 
+                    else: # if the b is 0 then it can be ignored
                         temporary_string = ""
                 output_string = temporary_string + output_string
 

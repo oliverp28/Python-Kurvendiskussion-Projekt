@@ -1,5 +1,5 @@
-"""This module contains a class for outputting a curve analysis using precalculated values."""
 class Curve_Discussion_Output: # Class for outputting the curve analysis
+    """This module contains a class for outputting a curve analysis using precalculated values."""
     def __init__(self,
                  function,
                  function_type="--",
