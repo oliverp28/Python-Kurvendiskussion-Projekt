@@ -314,6 +314,6 @@ class Curve_Discussion_Output: # Class for outputting the curve analysis
             """
         )
 
-        print((47 * " ") + "╔═ © created by Oliver P., Stefan, David and Rami ═╗")
+        print((47 * " ") + "╔═ © created by Oliver P., Stefan, Rami and David ═╗")
 
         print((47 * " ") + "╚══════════════════════════════════════════════════╝")
