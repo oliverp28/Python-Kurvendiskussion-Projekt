@@ -1,6 +1,6 @@
 """test cases for the Quadratic_Func class"""
 import pytest
-from quadratic import Quadratic_Func
+from quadratic_function import Quadratic_Func
 
 
 G1 = "1x**2"  # touchpoint, symmetrical to y-axis

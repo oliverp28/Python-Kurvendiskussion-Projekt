@@ -229,7 +229,6 @@ class Quadratic_Func:
 
             if index == -2: # put the b with the x in front of the c
                 temporary_string = str(exporting_func[-2]) + "x"
-                print(temporary_string)
                 if len(exporting_func) == 3:
                     if exporting_func[index] > 0:
                         temporary_string = " + " + temporary_string
