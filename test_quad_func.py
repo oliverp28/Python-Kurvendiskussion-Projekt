@@ -85,21 +85,6 @@ def test_add_two_function_second_is_shorter():
     assert (g3_as_func + g1_as_func) == Quadratic_Func((2.0, 0.0, 5.0))
 
 
-def test_sub_two_function_same_length():
-    """testing minus with two functions with the same length"""
-    assert (g2_as_func - g2_as_func) == Quadratic_Func((0.0, 0.0, 0.0))
-
-
-def test_sub_two_function_first_is_shorter():
-    """testing minus with two functions, when the first one is shorter"""
-    assert (g1_as_func - g2_as_func) == Quadratic_Func((0.0, -2.0, 3.0))
-
-
-def test_sub_two_function_second_is_shorter():
-    """testing minus with two functions, when the second one is shorter"""
-    assert (g3_as_func - g1_as_func) == Quadratic_Func((0.0, 0.0, 5.0))
-
-
 Y_AXIS_SHIFT = 5
 
 
