@@ -1,61 +1,67 @@
-# Python-Kurvendiskussion-Projekt
-In diesem Projekt führen wir eine komplette Kurvendiskussion durch. Vorgabe: Objektorientierte Programmierung
+# Python Curve Discussion Project
 
+Welcome to the Python Curve Discussion Project! In this project, we conduct a comprehensive curve discussion with a focus on object-oriented programming.
 
-Als Eingabe dienen folgende Funktionen:
+## Overview
 
-  -> lineare Funktionen
-  -> quadratische Funktion
-  
+The project takes linear and quadratic functions as input. The input is validated through input validation and categorized into the respective function classes. The calculations are performed within each class.
 
+## Results Include:
 
--> Die Eingabe wird durch Input-Validation geprüft und in eine der vorgegebenen Funktions-Kategorien eingeordnet
---> Die Berechnung der Ergebnisse erfolgt in der jeweiligen Klasse
-  
-  -> Bestandteile der Ergebnisse:
-     
-      > Ableitungen (Möglichkeit der Anzeige aller, die zur Berechnung verwendet werden)
-      > Nullpunkte mit der X-Achse (Anzahl; Koordinaten)
-      > Symmetrie vorhanden? 
-          - X-Achse
-          - Y-Achse
-      > Extremstellen  
-          - Hochpunkte (Anzahl; ggfs. Koordinaten)
-          - Tiefpunkte (Anzahl; ggfs. Koordinaten)
-          - Wendepunkte (Anzahl; ggfs. Koordinaten)
-      > Krümmungs-Verhalten
-      > Monotonie-Verhalten
-      > Grenzverhalten (limes) (gegen +/- unendlich)
-      
-    --> Die Ausgabe erfolgt in einer geordneten übersichtlichen Tabelle
+- Derivatives (Option to display all derivatives used in the calculation)
+- Roots with the X-axis (Number; Coordinates)
+- Symmetry (If present):
+  - X-axis
+  - Y-axis
+- Extreme Points:
+  - High points (Number; Coordinates if applicable)
+  - Low points (Number; Coordinates if applicable)
+  - Inflection points (Number; Coordinates if applicable)
+- Curvature Behavior
+- Monotonic Behavior
+- Limit Behavior (Limits towards +/- infinity)
 
-Projekt-Teilnehmer: Stefan Mack, Oliver Polak, Rami Karkaba und David Klumpp
+The output is presented in a well-organized and clear table.
 
+## Project Participants
 
-    Optimierung kurz vor der Abgabe-----------------------
-    -> Dopplungen abschaffen und zusammenfassen
-    -> pylint Pyhton-Code Analyzer
-    —> black (code formator)
-    —> pytest (code tester)
-    —> isort (Sortiert alle Python Module korrekt)
+- Stefan Mack
+- Oliver Polak
+- Rami Karkaba
+- David Klumpp
 
+## Optimization before Submission
 
-    classes:
-      -InputFunction
-      -LinearFunction
-      -QuadraticFunction
-      -CurveDiscussionOutput
+- Eliminate duplications and consolidate code
+- Use pylint Python Code Analyzer
+- Utilize black (code formatter)
+- Implement pytest (code tester)
+- Apply isort (Sort all Python modules correctly)
 
-    files:
-      -main.py
-      -input_function.py
-      -linear_function.py
-      -quadratic_function.py
-      -curve_discussion_output.py
-      
-     test_files:
-       -test_lin_func.py
-       -test_quad_func.py
+## Project Structure
 
-Programmablauf:
-  main -> input_function -> linear_function | quadratic_function -> curve_discussion_output
+### Classes
+
+- InputFunction
+- LinearFunction
+- QuadraticFunction
+- CurveDiscussionOutput
+
+### Files
+
+- main.py
+- input_function.py
+- linear_function.py
+- quadratic_function.py
+- curve_discussion_output.py
+
+### Test Files
+
+- test_lin_func.py
+- test_quad_func.py
+
+## Program Flow
+
+`main` -> `input_function` -> `linear_function` | `quadratic_function` -> `curve_discussion_output`
+
+Feel free to explore the functionalities and contribute to the optimization of the project!
